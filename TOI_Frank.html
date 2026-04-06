@@ -3,28 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>TOI · Frank</title>
+<title>TOI - Frank</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#050c18;--bg2:#0a1628;--bg3:#0f172a;
-  --border:#1e293b;--border2:#334155;
-  --teal:#0d9488;--slate:#475569;--muted:#64748b;
-  --text:#f1f5f9;--text2:#cbd5e1;
-  --green:#10b981;--amber:#f59e0b;--red:#ef4444;
-  --font:'DM Sans',sans-serif;
-}
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050c18;--bg2:#0a1628;--bg3:#0f172a;--border:#1e293b;--border2:#334155;--teal:#0d9488;--slate:#475569;--muted:#64748b;--text:#f1f5f9;--text2:#cbd5e1;--green:#10b981;--amber:#f59e0b;--red:#ef4444;--font:'DM Sans',sans-serif}
 body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
 input:focus,textarea:focus{outline:none;border-color:var(--teal)!important;box-shadow:0 0 0 2px rgba(13,148,136,.2)}
 button{font-family:var(--font);cursor:pointer}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 #header{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:12;position:sticky;top:0;z-index:50}
 .logo{background:var(--teal);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0}
 .hdr-title{font-size:15px;font-weight:800;letter-spacing:-.01em}
@@ -34,7 +24,7 @@ button{font-family:var(--font);cursor:pointer}
 .sdot.syncing{background:var(--amber);animation:pulse 1s infinite}
 .sdot.synced{background:var(--green)}
 .sdot.error{background:var(--red)}
-#content{padding:16px;max-width:540px;margin:0 auto;animation:fadeIn .3s ease}
+#content{padding:16px;max-width:540px;margin:0 auto}
 .score-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;display:flex;align-items:center;gap:16}
 .score-name{font-size:18px;font-weight:800;margin-bottom:2px}
 .score-date{font-size:12px;color:var(--muted)}
@@ -62,20 +52,18 @@ button{font-family:var(--font);cursor:pointer}
 .commerce-inp{width:100%;background:var(--border);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:13px;font-family:var(--font);padding:9px 12px;margin-bottom:10px}
 .loc-row{display:flex;gap:8;margin-bottom:6px}
 .loc-inp{flex:1;background:var(--border);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-size:12px;font-family:var(--font);padding:9px 12px}
-.loc-btn{background:var(--green);border:none;border-radius:8px;color:#fff;font-size:12px;font-weight:700;padding:9px 14px;white-space:nowrap;font-family:var(--font);transition:background .2s}
+.loc-btn{background:var(--green);border:none;border-radius:8px;color:#fff;font-size:12px;font-weight:700;padding:9px 14px;white-space:nowrap;font-family:var(--font)}
 .loc-btn:disabled{background:var(--slate);cursor:not-allowed}
 .loc-preview{font-size:11px;color:var(--green);margin-top:4px;display:none}
 .loc-note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
 .loc-link{color:var(--green);text-decoration:none}
-.loc-link:hover{text-decoration:underline}
-.save-btn{width:100%;background:var(--teal);border:none;border-radius:14px;color:#fff;font-size:15px;font-weight:700;padding:16px;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:8;transition:background .2s;margin-top:4px}
+.save-btn{width:100%;background:var(--teal);border:none;border-radius:14px;color:#fff;font-size:15px;font-weight:700;padding:16px;font-family:var(--font);display:flex;align-items:center;justify-content:center;gap:8;margin-top:4px}
 .save-btn:disabled{background:var(--slate);cursor:not-allowed}
 .save-spinner{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
 .success-banner{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:12px;padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12}
 .success-title{font-size:14px;font-weight:700;color:var(--green)}
 .success-sub{font-size:12px;color:var(--muted);margin-top:2px}
-#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:30px;display:none;z-index:200;font-family:var(--font);box-shadow:0 4px 20px rgba(0,0,0,.4);white-space:nowrap}
-</style>
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:30px;display:none;z-index:200;font-family:var(--font);box-shadow:0 4px 20px rgba(0,0,0,.4);white-space:nowrap}</style>
 </head>
 <body>
 <div id="header">
@@ -89,251 +77,315 @@ button{font-family:var(--font);cursor:pointer}
   <div class="sdot" id="sdot"></div>
   <span id="stxt">Iniciando...</span>
 </div>
-<div id="content"></div>
+<div id="content"><div style="padding:20px;color:#475569;font-size:14px">Cargando...</div></div>
 <div id="toast"></div>
 <script>
-var SHEETS_URL="https://script.google.com/macros/s/AKfycby49MgH9eDyc_dGJQechbPeythLY2NPIddFl9OUfajFHj-BjiWVDiRJThgYouQyKd4oTA/exec";
-var VENDOR_NAME="Frank";
-var LS_KEY="toi_v_Frank";
-
-var ITEMS=[
-  {id:'prospecting',  label:'Prospectos contactados hoy',      type:'number',goal:8, icon:'📞'},
-  {id:'visits',       label:'Visitas / demos realizadas',       type:'number',goal:3, icon:'🏪'},
-  {id:'proposals',    label:'Propuestas enviadas',              type:'number',goal:1, icon:'📄'},
-  {id:'closings',     label:'Cierres del día',                  type:'number',goal:0, icon:'✅'},
-  {id:'contracts',    label:'Contratos anuales gestionados',    type:'number',goal:0, icon:'📋'},
-  {id:'crm',          label:'CRM actualizado al cierre del día',type:'check', goal:1, icon:'💻'},
-  {id:'pipeline',     label:'Pipeline revisado y limpio',       type:'check', goal:1, icon:'🔄'},
-  {id:'blocker',      label:'¿Hubo algún bloqueo hoy?',        type:'text',  goal:0, icon:'⚠️'},
-  {id:'best_prospect',label:'Mejor prospecto del día',          type:'text',  goal:0, icon:'⭐'},
-  {id:'next_actions', label:'Próximas acciones para mañana',    type:'text',  goal:0, icon:'🎯'}
+var SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwVQVDEbDWCuWZd5hHC0UMLCZN7AP-j4ImijDG_8Ry9Mu1RdR7T7Qq9wFPYygNywvCMOA/exec';
+var VENDOR_NAME = 'Frank';
+var VENDOR_COLOR = '#1d4ed8';
+var LS_KEY = 'toi_v_Frank';
+var ITEMS = [
+  {id:'prospecting',  label:'Prospectos contactados hoy',       type:'number',goal:8, icon:'Prospectos'},
+  {id:'visits',       label:'Visitas / demos realizadas',        type:'number',goal:3, icon:'Visitas'},
+  {id:'proposals',    label:'Propuestas enviadas',               type:'number',goal:1, icon:'Propuestas'},
+  {id:'closings',     label:'Cierres del dia',                   type:'number',goal:0, icon:'Cierres'},
+  {id:'contracts',    label:'Contratos anuales gestionados',     type:'number',goal:0, icon:'Contratos'},
+  {id:'crm',          label:'CRM actualizado al cierre del dia', type:'check', goal:1, icon:'CRM'},
+  {id:'pipeline',     label:'Pipeline revisado y limpio',        type:'check', goal:1, icon:'Pipeline'},
+  {id:'blocker',      label:'Hubo algun bloqueo hoy?',          type:'text',  goal:0, icon:'Bloqueo'},
+  {id:'best_prospect',label:'Mejor prospecto del dia',           type:'text',  goal:0, icon:'Prospecto'},
+  {id:'next_actions', label:'Proximas acciones para manana',     type:'text',  goal:0, icon:'Acciones'}
 ];
-var form={};
-var alreadySaved=false;
+var form = {};
+var alreadySaved = false;
+var isSaving = false;
 
+var MONTHS = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
 
-const MONTHS=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-function todayKey(){return new Date().toISOString().split('T')[0]}
-function fmtDate(iso){if(!iso)return'';const p=iso.split('-');return parseInt(p[2])+' '+MONTHS[parseInt(p[1])-1]+' '+p[0]}
-function fmtTime(s){if(!s)return'';try{return new Date(s).toLocaleTimeString('es-DO',{hour:'2-digit',minute:'2-digit'})}catch{return''}}
-function sc(p){return p>=80?'#10b981':p>=50?'#f59e0b':'#ef4444'}
-function escH(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function calcScore(d){
-  let s=0,t=0;
-  ITEMS.forEach(function(item){
-    if(item.type==='number'&&item.goal>0){t+=item.goal;s+=Math.min(parseInt(d[item.id]||0),item.goal)}
-    else if(item.type==='check'){t+=1;s+=d[item.id]?1:0}
-  });
-  return t>0?Math.round((s/t)*100):0
+function todayKey() { return new Date().toISOString().split('T')[0]; }
+function fmtDate(iso) {
+  if (!iso) return '';
+  var p = iso.split('-');
+  return parseInt(p[2]) + ' ' + MONTHS[parseInt(p[1])-1] + ' ' + p[0];
 }
-function setSyncStatus(status,msg){
-  document.getElementById('sdot').className='sdot '+status;
-  document.getElementById('stxt').textContent=msg;
+function fmtTime(s) {
+  if (!s) return '';
+  try { return new Date(s).toLocaleTimeString('es-DO', {hour:'2-digit',minute:'2-digit'}); } catch(e) { return ''; }
 }
-function showToast(msg,color){
-  color=color||'#10b981';
-  var t=document.getElementById('toast');
-  t.textContent=msg;t.style.background=color;t.style.display='block';
-  setTimeout(function(){t.style.display='none'},3000);
+function sc(p) { return p >= 80 ? '#10b981' : p >= 50 ? '#f59e0b' : '#ef4444'; }
+function escH(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
-
-
-function loadLocal(){
-  try{var all=JSON.parse(localStorage.getItem(LS_KEY)||'{}');return all[todayKey()]||{}}catch{return{}}
-}
-function saveLocal(data){
-  try{var all=JSON.parse(localStorage.getItem(LS_KEY)||'{}');all[todayKey()]=data;localStorage.setItem(LS_KEY,JSON.stringify(all))}catch{}
-}
-
-function loadFromSheets(){
-  setSyncStatus('syncing','Sincronizando...');
-  fetch(SHEETS_URL+'?vendor='+encodeURIComponent(VENDOR_NAME)+'&t='+Date.now())
-    .then(function(r){return r.json()})
-    .then(function(data){
-      var today=todayKey();
-      if(data[VENDOR_NAME]&&data[VENDOR_NAME][today]){
-        form=Object.assign({},data[VENDOR_NAME][today]);
-        saveLocal(form);alreadySaved=true;
-      }
-      setSyncStatus('synced','Sincronizado · '+fmtTime(new Date().toISOString()));
-      render();
-    })
-    .catch(function(){
-      setSyncStatus('error','Sin conexión — modo offline');
-      render();
-    });
-}
-
-function pushToSheets(){
-  var payload=Object.assign({vendor:VENDOR_NAME,date:todayKey()},form);
-  return fetch(SHEETS_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'})
-    .then(function(){return true}).catch(function(){return false});
-}
-
-function render(){
-  document.getElementById('hdr-date').textContent=fmtDate(todayKey());
-  var score=calcScore(form);
-  var initials=VENDOR_NAME.split(' ').map(function(w){return w[0]}).join('').slice(0,2).toUpperCase();
-  var tme=form.savedAt?fmtTime(form.savedAt):'';
-  var html='';
-
-  html+='<div class="score-card">';
-  html+='<div style="width:48px;height:48px;border-radius:50%;background:#1d4ed8;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0">'+initials+'</div>';
-  html+='<div style="flex:1"><div class="score-name">'+VENDOR_NAME+'</div>';
-  html+='<div class="score-date">Reporte del día · '+fmtDate(todayKey())+'</div>';
-  if(alreadySaved&&tme) html+='<div class="score-saved">✓ Enviado a las '+tme+'</div>';
-  html+='</div>';
-  html+='<div class="ring-wrap" style="width:64px;height:64px">';
-  html+='<svg width="64" height="64" style="transform:rotate(-90deg)">';
-  html+='<circle cx="32" cy="32" r="26" fill="none" stroke="#1e293b" stroke-width="5"/>';
-  html+='<circle id="main-ring" cx="32" cy="32" r="26" fill="none" stroke="#0d9488" stroke-width="5" stroke-dasharray="0 163.4" stroke-linecap="round" style="transition:stroke-dasharray .5s"/>';
-  html+='</svg>';
-  html+='<div class="ring-lbl" id="main-score" style="font-size:13px;color:#0d9488">0%</div>';
-  html+='</div></div>';
-
-  if(alreadySaved){
-    html+='<div class="success-banner">';
-    html+='<div style="font-size:24px;flex-shrink:0">✅</div>';
-    html+='<div><div class="success-title">Reporte enviado hoy</div>';
-    html+='<div class="success-sub">Puedes editar y reenviar cuando quieras</div></div></div>';
-  }
-
-  html+='<div class="form-card"><div class="fc-hdr">📋 Actividad del día</div>';
-  ITEMS.forEach(function(item){
-    var val=form[item.id];
-    html+='<div class="fi"><div class="fi-row">';
-    html+='<span class="fi-ico">'+item.icon+'</span>';
-    html+='<span class="fi-lbl">'+item.label+'</span>';
-    if(item.type==='number'&&item.goal>0) html+='<span class="fi-goal">Meta: '+item.goal+'</span>';
-    html+='</div>';
-    if(item.type==='number'){
-      var pct=item.goal>0?Math.min(100,((parseInt(val)||0)/item.goal)*100):0;
-      var barColor=sc(pct);
-      html+='<div class="num-row">';
-      html+='<input type="number" min="0" class="num-inp" id="fi_'+item.id+'" value="'+(val||'')+'" placeholder="0" oninput="onNum(''+item.id+'',this.value)">';
-      if(item.goal>0) html+='<div class="pbar-wrap"><div class="pbar-fill" id="bar_'+item.id+'" style="width:'+pct+'%;background:'+barColor+'"></div></div>';
-      html+='</div>';
-    } else if(item.type==='check'){
-      var on=!!val;
-      html+='<button class="chk-btn '+(on?'chk-on':'chk-off')+'" id="chk_'+item.id+'" onclick="onChk(''+item.id+'')">'+(on?'✓ Completado':'Marcar como hecho')+'</button>';
-    } else {
-      html+='<textarea class="txt-inp" id="fi_'+item.id+'" rows="2" placeholder="Escribe aquí..." oninput="onTxt(''+item.id+'',this.value)">'+escH(val||'')+'</textarea>';
+function calcScore(d) {
+  var s = 0, t = 0;
+  for (var i = 0; i < ITEMS.length; i++) {
+    var item = ITEMS[i];
+    if (item.type === 'number' && item.goal > 0) {
+      t += item.goal;
+      s += Math.min(parseInt(d[item.id] || 0), item.goal);
+    } else if (item.type === 'check') {
+      t += 1;
+      s += d[item.id] ? 1 : 0;
     }
-    html+='</div>';
+  }
+  return t > 0 ? Math.round((s / t) * 100) : 0;
+}
+function setSyncStatus(status, msg) {
+  var dot = document.getElementById('sdot');
+  var txt = document.getElementById('stxt');
+  if (dot) dot.className = 'sdot ' + status;
+  if (txt) txt.textContent = msg;
+}
+function showToast(msg, color) {
+  var t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.style.background = color || '#10b981';
+  t.style.display = 'block';
+  setTimeout(function() { t.style.display = 'none'; }, 3000);
+}
+function loadLocal() {
+  try {
+    var all = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    return all[todayKey()] || {};
+  } catch(e) { return {}; }
+}
+function saveLocal(data) {
+  try {
+    var all = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+    all[todayKey()] = data;
+    localStorage.setItem(LS_KEY, JSON.stringify(all));
+  } catch(e) {}
+}
+
+// Load today data from Sheets using JSONP to avoid CORS
+function loadFromSheets() {
+  setSyncStatus('syncing', 'Sincronizando...');
+  var callbackName = 'cb_' + Date.now();
+  var script = document.createElement('script');
+  window[callbackName] = function(data) {
+    try {
+      var today = todayKey();
+      if (data && data[VENDOR_NAME] && data[VENDOR_NAME][today]) {
+        form = data[VENDOR_NAME][today];
+        saveLocal(form);
+        alreadySaved = true;
+      }
+      setSyncStatus('synced', 'Sincronizado');
+    } catch(e) {
+      setSyncStatus('error', 'Sin conexion - modo offline');
+    }
+    render();
+    delete window[callbackName];
+    if (script.parentNode) script.parentNode.removeChild(script);
+  };
+  script.onerror = function() {
+    setSyncStatus('error', 'Sin conexion - modo offline');
+    render();
+    delete window[callbackName];
+    if (script.parentNode) script.parentNode.removeChild(script);
+  };
+  script.src = SHEETS_URL + '?vendor=' + encodeURIComponent(VENDOR_NAME) + '&callback=' + callbackName + '&t=' + Date.now();
+  document.head.appendChild(script);
+}
+
+// Send data to Sheets via form POST (no-cors safe)
+function pushToSheets(cb) {
+  var form_el = document.createElement('form');
+  form_el.style.display = 'none';
+  // We use fetch with no-cors - data saves even if we can't read response
+  var payload = {};
+  for (var k in form) payload[k] = form[k];
+  payload.vendor = VENDOR_NAME;
+  payload.date = todayKey();
+  
+  fetch(SHEETS_URL, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload),
+    mode: 'no-cors'
+  }).then(function() {
+    if (cb) cb(true);
+  }).catch(function() {
+    if (cb) cb(false);
   });
-  html+='</div>';
-
-  var locVal=form.location_url||'';
-  var commVal=form.commerce_name||'';
-  html+='<div class="loc-card">';
-  html+='<div class="loc-title">📍 Verificación de visita</div>';
-  html+='<div style="font-size:11px;color:var(--muted);margin-bottom:6px">Nombre del comercio visitado hoy</div>';
-  html+='<input type="text" class="commerce-inp" id="fi_commerce_name" value="'+escH(commVal)+'" placeholder="Ej: Restaurante La Paloma" oninput="onTxt('commerce_name',this.value)">';
-  html+='<div style="font-size:11px;color:var(--muted);margin-bottom:8px">Pin de ubicación GPS — prueba de la visita</div>';
-  html+='<div class="loc-row">';
-  html+='<input type="text" class="loc-inp" id="fi_location_url" value="'+escH(locVal)+'" placeholder="Pega link de Google Maps o usa el botón..." oninput="onTxt('location_url',this.value)">';
-  html+='<button class="loc-btn" id="gps-btn" onclick="captureLocation()">📍 Mi GPS</button>';
-  html+='</div>';
-  html+='<div class="loc-preview" id="loc-preview" style="'+(locVal?'display:block':'')+'">'+( locVal?'✓ Ubicación registrada · <a class="loc-link" href="'+escH(locVal)+'" target="_blank">Ver en mapa</a>':'' )+'</div>';
-  html+='<div class="loc-note">💡 Presiona "Mi GPS" para capturar tu ubicación automáticamente, o pega un link de Google Maps.</div>';
-  html+='</div>';
-
-  html+='<button class="save-btn" id="save-btn" onclick="doSave()">';
-  html+='<div class="save-spinner" id="save-spin"></div>';
-  html+='<span id="save-lbl">'+(alreadySaved?'↻ Actualizar reporte':'Enviar reporte del día')+'</span>';
-  html+='</button><div style="height:32px"></div>';
-
-  document.getElementById('content').innerHTML=html;
-  requestAnimationFrame(function(){updateRing(score)});
 }
 
-function updateRing(score){
-  var c=sc(score),circ=2*Math.PI*26,dash=(score/100)*circ;
-  var ring=document.getElementById('main-ring');
-  if(!ring)return;
-  ring.setAttribute('stroke-dasharray',dash+' '+circ);
-  ring.setAttribute('stroke',c);
-  var lbl=document.getElementById('main-score');
-  if(lbl){lbl.textContent=score+'%';lbl.style.color=c}
+function updateRing(score) {
+  var ring = document.getElementById('main-ring');
+  var lbl = document.getElementById('main-score');
+  if (!ring || !lbl) return;
+  var c = sc(score);
+  var circ = 2 * Math.PI * 26;
+  var dash = (score / 100) * circ;
+  ring.setAttribute('stroke-dasharray', dash + ' ' + circ);
+  ring.setAttribute('stroke', c);
+  lbl.textContent = score + '%';
+  lbl.style.color = c;
 }
 
-function onNum(id,val){
-  form[id]=val;
-  var item=ITEMS.find(function(i){return i.id===id});
-  if(item&&item.goal>0){
-    var pct=Math.min(100,((parseInt(val)||0)/item.goal)*100);
-    var bar=document.getElementById('bar_'+id);
-    if(bar){bar.style.width=pct+'%';bar.style.background=sc(pct)}
+function render() {
+  var score = calcScore(form);
+  var ini = VENDOR_NAME.split(' ').map(function(w){return w[0];}).join('').slice(0,2).toUpperCase();
+  var tme = form.savedAt ? fmtTime(form.savedAt) : '';
+  var html = '';
+
+  html += '<div class="score-card">';
+  html += '<div style="width:48px;height:48px;border-radius:50%;background:' + VENDOR_COLOR + ';display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;flex-shrink:0">' + ini + '</div>';
+  html += '<div style="flex:1">';
+  html += '<div class="score-name">' + VENDOR_NAME + '</div>';
+  html += '<div class="score-date">Reporte del dia &middot; ' + fmtDate(todayKey()) + '</div>';
+  if (alreadySaved && tme) html += '<div class="score-saved">&#10003; Enviado a las ' + tme + '</div>';
+  html += '</div>';
+  html += '<div class="ring-wrap" style="width:64px;height:64px">';
+  html += '<svg width="64" height="64" style="transform:rotate(-90deg)">';
+  html += '<circle cx="32" cy="32" r="26" fill="none" stroke="#1e293b" stroke-width="5"/>';
+  html += '<circle id="main-ring" cx="32" cy="32" r="26" fill="none" stroke="#0d9488" stroke-width="5" stroke-dasharray="0 163.4" stroke-linecap="round" style="transition:stroke-dasharray .5s"/>';
+  html += '</svg>';
+  html += '<div class="ring-lbl" id="main-score" style="font-size:13px;color:#0d9488">0%</div>';
+  html += '</div></div>';
+
+  if (alreadySaved) {
+    html += '<div class="success-banner">';
+    html += '<div style="font-size:24px">&#10003;</div>';
+    html += '<div><div class="success-title">Reporte enviado hoy</div>';
+    html += '<div class="success-sub">Puedes editar y reenviar cuando quieras</div></div></div>';
+  }
+
+  html += '<div class="form-card"><div class="fc-hdr">Actividad del dia</div>';
+  for (var i = 0; i < ITEMS.length; i++) {
+    var item = ITEMS[i];
+    var val = form[item.id];
+    html += '<div class="fi"><div class="fi-row">';
+    html += '<span class="fi-lbl"><strong>' + item.icon + '</strong> &nbsp;' + item.label + '</span>';
+    if (item.type === 'number' && item.goal > 0) html += '<span class="fi-goal">Meta: ' + item.goal + '</span>';
+    html += '</div>';
+    if (item.type === 'number') {
+      var pct = item.goal > 0 ? Math.min(100, ((parseInt(val)||0) / item.goal) * 100) : 0;
+      html += '<div class="num-row">';
+      html += '<input type="number" min="0" class="num-inp" id="fi_' + item.id + '" value="' + (val||'') + '" placeholder="0" oninput="onNum('' + item.id + '',this.value)">';
+      if (item.goal > 0) html += '<div class="pbar-wrap"><div class="pbar-fill" id="bar_' + item.id + '" style="width:' + pct + '%;background:' + sc(pct) + '"></div></div>';
+      html += '</div>';
+    } else if (item.type === 'check') {
+      var on = !!val;
+      html += '<button class="chk-btn ' + (on ? 'chk-on' : 'chk-off') + '" id="chk_' + item.id + '" onclick="onChk('' + item.id + '')">' + (on ? '&#10003; Completado' : 'Marcar como hecho') + '</button>';
+    } else {
+      html += '<textarea class="txt-inp" id="fi_' + item.id + '" rows="2" placeholder="Escribe aqui..." oninput="onTxt('' + item.id + '',this.value)">' + escH(val||'') + '</textarea>';
+    }
+    html += '</div>';
+  }
+  html += '</div>';
+
+  var locVal = form.location_url || '';
+  var commVal = form.commerce_name || '';
+  html += '<div class="loc-card">';
+  html += '<div class="loc-title">Verificacion de visita</div>';
+  html += '<div style="font-size:11px;color:var(--muted);margin-bottom:6px">Nombre del comercio visitado hoy</div>';
+  html += '<input type="text" class="commerce-inp" id="fi_commerce_name" value="' + escH(commVal) + '" placeholder="Ej: Restaurante La Paloma" oninput="onTxt('commerce_name',this.value)">';
+  html += '<div style="font-size:11px;color:var(--muted);margin-bottom:8px">Pin de ubicacion GPS</div>';
+  html += '<div class="loc-row">';
+  html += '<input type="text" class="loc-inp" id="fi_location_url" value="' + escH(locVal) + '" placeholder="Pega link de Google Maps o usa el boton..." oninput="onTxt('location_url',this.value)">';
+  html += '<button class="loc-btn" id="gps-btn" onclick="captureLocation()">Mi GPS</button>';
+  html += '</div>';
+  if (locVal) {
+    html += '<div class="loc-preview" style="display:block">Ubicacion registrada &middot; <a class="loc-link" href="' + escH(locVal) + '" target="_blank">Ver en mapa</a></div>';
+  } else {
+    html += '<div class="loc-preview" id="loc-preview"></div>';
+  }
+  html += '<div class="loc-note">Presiona Mi GPS para capturar tu ubicacion automaticamente.</div>';
+  html += '</div>';
+
+  html += '<button class="save-btn" id="save-btn" onclick="doSave()">';
+  html += '<div class="save-spinner" id="save-spin"></div>';
+  html += '<span id="save-lbl">' + (alreadySaved ? 'Actualizar reporte' : 'Enviar reporte del dia') + '</span>';
+  html += '</button><div style="height:32px"></div>';
+
+  document.getElementById('content').innerHTML = html;
+  setTimeout(function() { updateRing(score); }, 50);
+}
+
+function onNum(id, val) {
+  form[id] = val;
+  var item = null;
+  for (var i = 0; i < ITEMS.length; i++) { if (ITEMS[i].id === id) { item = ITEMS[i]; break; } }
+  if (item && item.goal > 0) {
+    var pct = Math.min(100, ((parseInt(val)||0) / item.goal) * 100);
+    var bar = document.getElementById('bar_' + id);
+    if (bar) { bar.style.width = pct + '%'; bar.style.background = sc(pct); }
   }
   updateRing(calcScore(form));
 }
-function onChk(id){
-  form[id]=!form[id];
-  var btn=document.getElementById('chk_'+id);
-  if(btn){btn.className='chk-btn '+(form[id]?'chk-on':'chk-off');btn.textContent=form[id]?'✓ Completado':'Marcar como hecho'}
+function onChk(id) {
+  form[id] = !form[id];
+  var btn = document.getElementById('chk_' + id);
+  if (btn) { btn.className = 'chk-btn ' + (form[id] ? 'chk-on' : 'chk-off'); btn.textContent = form[id] ? 'Completado' : 'Marcar como hecho'; }
   updateRing(calcScore(form));
 }
-function onTxt(id,val){form[id]=val}
+function onTxt(id, val) { form[id] = val; }
 
-function captureLocation(){
-  var btn=document.getElementById('gps-btn');
-  btn.disabled=true;btn.textContent='⏳';
-  if(!navigator.geolocation){
-    showToast('GPS no disponible','#ef4444');
-    btn.disabled=false;btn.textContent='📍 Mi GPS';return;
+function captureLocation() {
+  var btn = document.getElementById('gps-btn');
+  if (!btn) return;
+  btn.disabled = true; btn.textContent = '...';
+  if (!navigator.geolocation) {
+    showToast('GPS no disponible', '#ef4444');
+    btn.disabled = false; btn.textContent = 'Mi GPS'; return;
   }
   navigator.geolocation.getCurrentPosition(
-    function(pos){
-      var lat=pos.coords.latitude.toFixed(6),lng=pos.coords.longitude.toFixed(6);
-      var acc=Math.round(pos.coords.accuracy);
-      var url='https://www.google.com/maps?q='+lat+','+lng;
-      form.location_url=url;
-      var inp=document.getElementById('fi_location_url');
-      if(inp)inp.value=url;
-      var prev=document.getElementById('loc-preview');
-      if(prev){prev.style.display='block';prev.innerHTML='✓ GPS capturado (±'+acc+'m) · <a class="loc-link" href="'+url+'" target="_blank">Ver en mapa</a>'}
-      btn.disabled=false;btn.textContent='✓ OK';btn.style.background='#059669';
-      showToast('📍 Ubicación registrada','#10b981');
+    function(pos) {
+      var lat = pos.coords.latitude.toFixed(6);
+      var lng = pos.coords.longitude.toFixed(6);
+      var acc = Math.round(pos.coords.accuracy);
+      var url = 'https://www.google.com/maps?q=' + lat + ',' + lng;
+      form.location_url = url;
+      var inp = document.getElementById('fi_location_url');
+      if (inp) inp.value = url;
+      var prev = document.getElementById('loc-preview');
+      if (prev) { prev.style.display = 'block'; prev.innerHTML = 'GPS capturado (+-' + acc + 'm) <a class="loc-link" href="' + url + '" target="_blank">Ver mapa</a>'; }
+      btn.disabled = false; btn.textContent = 'OK';
+      showToast('Ubicacion registrada', '#10b981');
     },
-    function(err){
-      btn.disabled=false;btn.textContent='📍 Mi GPS';
-      var m={1:'GPS denegado',2:'Señal no disponible',3:'Tiempo agotado'};
-      showToast(m[err.code]||'Error GPS','#ef4444');
+    function(err) {
+      btn.disabled = false; btn.textContent = 'Mi GPS';
+      var msgs = {1:'GPS denegado - activa el permiso',2:'Senal GPS no disponible',3:'Tiempo agotado'};
+      showToast(msgs[err.code] || 'Error GPS', '#ef4444');
     },
-    {enableHighAccuracy:true,timeout:15000,maximumAge:0}
+    {enableHighAccuracy:true, timeout:15000, maximumAge:0}
   );
 }
 
-function doSave(){
-  var btn=document.getElementById('save-btn');
-  if(btn.disabled)return;
-  btn.disabled=true;
-  document.getElementById('save-spin').style.display='block';
-  document.getElementById('save-lbl').textContent='Enviando...';
-  form.savedAt=new Date().toISOString();
+function doSave() {
+  if (isSaving) return;
+  isSaving = true;
+  var btn = document.getElementById('save-btn');
+  var spin = document.getElementById('save-spin');
+  var lbl = document.getElementById('save-lbl');
+  if (btn) btn.disabled = true;
+  if (spin) spin.style.display = 'block';
+  if (lbl) lbl.textContent = 'Enviando...';
+  form.savedAt = new Date().toISOString();
   saveLocal(form);
-  setSyncStatus('syncing','Enviando a Google Sheets...');
-  pushToSheets().then(function(ok){
-    btn.disabled=false;
-    document.getElementById('save-spin').style.display='none';
-    alreadySaved=true;
-    if(ok){
-      setSyncStatus('synced','Enviado · '+fmtTime(form.savedAt));
-      showToast('✓ Reporte enviado','#10b981');
-    }else{
-      setSyncStatus('error','Sin conexión — guardado local');
-      showToast('⚠ Sin conexión — guardado localmente','#f59e0b');
+  setSyncStatus('syncing', 'Enviando...');
+  pushToSheets(function(ok) {
+    isSaving = false;
+    alreadySaved = true;
+    if (ok) {
+      setSyncStatus('synced', 'Enviado correctamente');
+      showToast('Reporte enviado', '#10b981');
+    } else {
+      setSyncStatus('synced', 'Guardado - se enviara cuando haya conexion');
+      showToast('Guardado localmente', '#f59e0b');
     }
     render();
   });
 }
 
-form=loadLocal();
-if(form.savedAt)alreadySaved=true;
-document.getElementById('hdr-date').textContent=fmtDate(todayKey());
+// INIT
+form = loadLocal();
+if (form.savedAt) alreadySaved = true;
+document.getElementById('hdr-date').textContent = fmtDate(todayKey());
 render();
 loadFromSheets();
-
 </script>
 </body>
 </html>
