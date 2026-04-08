@@ -32,19 +32,18 @@ button{font-family:var(--fn);cursor:pointer}
 .cnt-lbl{font-size:10px;color:var(--mu);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
 .newbtn{background:var(--teal);border:none;border-radius:12px;color:#fff;font-size:13px;font-weight:700;padding:10px 16px;white-space:nowrap}
 .sec-lbl{font-size:11px;color:var(--sl);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
-/* MODAL */
 #fmodal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.87);backdrop-filter:blur(4px);z-index:100;align-items:flex-end;justify-content:center}
 #fmodal.open{display:flex}
 #fbox{background:var(--bg3);border-radius:20px 20px 0 0;width:100%;max-width:520px;max-height:93vh;overflow:hidden;display:flex;flex-direction:column;animation:slideIn .25s ease}
 .fmhdr{padding:16px 20px 12px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
 .fmtitle{font-size:16px;font-weight:700}
+.fmedit{font-size:11px;color:var(--am);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:6px;padding:2px 8px;margin-left:8px}
 .fmclose{background:var(--b);border:none;border-radius:8px;color:var(--mu);font-size:18px;width:32px;height:32px;display:flex;align-items:center;justify-content:center}
 .fmbody{overflow-y:auto;padding:12px 20px 8px;flex:1}
 .fi{margin-bottom:14px;position:relative}
 .fi label{display:block;font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
 .fi input,.fi textarea,.fi select{width:100%;background:var(--b);border:1px solid var(--b2);border-radius:10px;color:var(--tx);font-size:14px;font-family:var(--fn);padding:11px 14px}
 .fi textarea{resize:vertical}
-/* AUTOCOMPLETE */
 .ac-list{position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--teal);border-radius:10px;z-index:200;max-height:180px;overflow-y:auto;margin-top:2px;display:none}
 .ac-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--b);font-size:13px}
 .ac-item:last-child{border-bottom:none}
@@ -52,11 +51,9 @@ button{font-family:var(--fn);cursor:pointer}
 .ac-name{font-weight:700;color:var(--tx)}
 .ac-sub{font-size:11px;color:var(--mu);margin-top:2px}
 .ac-badge{font-size:10px;background:rgba(13,148,136,.15);color:var(--teal);padding:1px 6px;border-radius:4px;margin-left:6px;font-weight:600}
-/* TYPE BUTTONS */
 .type-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .type-btn{background:var(--b);border:1px solid var(--b2);border-radius:10px;color:var(--mu);font-size:12px;font-weight:600;padding:10px 6px;text-align:center;transition:all .2s}
 .type-btn.sel{background:rgba(13,148,136,.15);border-color:var(--teal);color:var(--teal)}
-/* GPS */
 .gps-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:14px;margin-bottom:14px}
 .gps-title{font-size:12px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
 .gps-row{display:flex;gap:8px}
@@ -65,12 +62,10 @@ button{font-family:var(--fn);cursor:pointer}
 .gps-btn:disabled{background:var(--sl)}
 .gps-status{font-size:11px;color:var(--gr);margin-top:6px;display:none}
 .gps-note{font-size:11px;color:var(--mu);margin-top:6px;line-height:1.4}
-/* SAVE */
 .fmfoot{padding:12px 20px 20px;border-top:1px solid var(--b)}
-.savebtn{width:100%;background:var(--teal);border:none;border-radius:14px;color:#fff;font-size:15px;font-weight:700;padding:15px;font-family:var(--fn);display:flex;align-items:center;justify-content:center;gap:8px}
+.savebtn{width:100%;border:none;border-radius:14px;color:#fff;font-size:15px;font-weight:700;padding:15px;font-family:var(--fn);display:flex;align-items:center;justify-content:center;gap:8px}
 .savebtn:disabled{background:var(--sl)}
 .spin{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
-/* VISIT LOG */
 .visit-item{background:var(--bg3);border:1px solid var(--b);border-radius:14px;padding:14px 16px;margin-bottom:8px;animation:slideIn .3s ease}
 .vi-top{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
 .vi-type{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.05em}
@@ -80,18 +75,17 @@ button{font-family:var(--fn);cursor:pointer}
 .vi-type.seguimiento{background:rgba(99,102,241,.15);color:#818cf8}
 .vi-type.propuesta{background:rgba(59,130,246,.15);color:#60a5fa}
 .vi-type.otro{background:rgba(71,85,105,.2);color:var(--sl)}
-.vi-time{font-size:11px;color:var(--mu);margin-left:auto}
+.vi-time{font-size:11px;color:var(--mu)}
+.vi-editbtn{margin-left:auto;background:var(--b);border:1px solid var(--b2);border-radius:7px;color:var(--mu);font-size:11px;font-weight:600;padding:3px 10px;transition:all .2s}
+.vi-editbtn:hover{border-color:var(--am);color:var(--am)}
 .vi-name{font-size:14px;font-weight:700;margin-bottom:3px}
 .vi-sub{font-size:12px;color:var(--mu)}
 .vi-note{font-size:12px;color:var(--tx2);margin-top:6px;padding-top:6px;border-top:1px solid var(--b)}
 .vi-gps{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--gr);text-decoration:none;margin-top:6px;background:rgba(16,185,129,.08);padding:3px 8px;border-radius:6px}
-/* COMERCIOS TAB */
 .com-card{background:var(--bg3);border:1px solid var(--b);border-radius:14px;padding:14px 16px;margin-bottom:8px}
 .com-name{font-size:14px;font-weight:700;margin-bottom:4px}
 .com-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
 .com-tag{font-size:11px;color:var(--mu);display:flex;align-items:center;gap:4px}
-.com-visits{font-size:11px;background:var(--b);padding:2px 8px;border-radius:6px;color:var(--tx2);font-weight:600}
-.com-last{font-size:11px;color:var(--mu);margin-top:4px}
 .empty-state{text-align:center;padding:40px 20px;color:var(--sl)}
 #toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:30px;display:none;z-index:300;box-shadow:0 4px 20px rgba(0,0,0,.4);white-space:nowrap}</style>
 </head>
@@ -103,7 +97,10 @@ button{font-family:var(--fn);cursor:pointer}
 <div id="fmodal">
   <div id="fbox">
     <div class="fmhdr">
-      <div class="fmtitle">Registrar visita</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div class="fmtitle" id="fm-title">Registrar visita</div>
+        <span class="fmedit" id="fm-edit-badge" style="display:none">Editando</span>
+      </div>
       <button class="fmclose" onclick="closeForm()">&#10005;</button>
     </div>
     <div class="fmbody">
@@ -118,7 +115,7 @@ button{font-family:var(--fn);cursor:pointer}
           <button class="type-btn" data-type="otro" onclick="setType(this)">&#8943; Otro</button>
         </div>
       </div>
-      <div class="fi" id="fi-commerce">
+      <div class="fi">
         <label>Nombre del comercio *</label>
         <input type="text" id="f-commerce" placeholder="Escribe para buscar o crear..." autocomplete="off" oninput="onCommerceInput(this.value)" onfocus="onCommerceFocus()" onblur="hideAC()">
         <div class="ac-list" id="ac-list"></div>
@@ -142,11 +139,11 @@ button{font-family:var(--fn);cursor:pointer}
           <button class="gps-btn" id="gpsbtn" onclick="doGPS()">Mi GPS</button>
         </div>
         <div class="gps-status" id="gps-status"></div>
-        <div class="gps-note">Presiona Mi GPS para capturar tu ubicacion exacta como prueba de la visita.</div>
+        <div class="gps-note">Presiona Mi GPS para capturar tu ubicacion exacta.</div>
       </div>
     </div>
     <div class="fmfoot">
-      <button class="savebtn" id="savebtn" onclick="submitVisit()">
+      <button class="savebtn" id="savebtn" onclick="submitVisit()" style="background:var(--teal)">
         <div class="spin" id="savespin"></div>
         <span id="savelbl">Guardar visita</span>
       </button>
@@ -155,7 +152,7 @@ button{font-family:var(--fn);cursor:pointer}
 </div>
 <div id="toast"></div>
 <script>
-var GAS="https://script.google.com/macros/s/AKfycbxjLJxE6yyHtSQbGh1fa6EvrwAGipBDbu-6kxeiylQ_ohdjsif5JKY5TYP7plteS0x7IA/exec";
+var GAS="https://script.google.com/macros/s/AKfycbyONpPmhXPiDH3mN1lLME1WlTNgEk6pvCePnk2v2Kb1ST13124RFSCxVxzMDxcfDyHGvQ/exec";
 var CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBmrVjL_vJpzgT1F6WNE0ToxrTNXEgrfbgVPZ_sv_LcGiso00JjBfrHz6L2jI9h6veF_GWvExBi7K7/pub?gid=250315356&single=true&output=csv";
 var VNAME="Frank";
 var LSKEY="toi_visits_frank";
@@ -167,6 +164,7 @@ var currentType="visita";
 var isSaving=false;
 var currentTab="hoy";
 var acHideTimer=null;
+var editingTs=null; // timestamp of visit being edited (null = new)
 
 var MONTHS=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
 function now(){return new Date().toISOString();}
@@ -176,11 +174,9 @@ function fdate(s){if(!s)return"";var d=(s.indexOf("T")>=0?s.split("T")[0]:s);var
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 function syncSt(cls,msg){var d=document.getElementById("sd"),t=document.getElementById("st");if(d)d.className="sd "+cls;if(t)t.textContent=msg;}
 function toast(msg,bg){var el=document.getElementById("toast");if(!el)return;el.textContent=msg;el.style.background=bg||"#10b981";el.style.display="block";setTimeout(function(){el.style.display="none";},3000);}
-
 function lsLoad(){try{return JSON.parse(localStorage.getItem(LSKEY)||"[]");}catch(e){return [];}}
 function lsSave(){try{localStorage.setItem(LSKEY,JSON.stringify(visits));}catch(e){}}
 
-// Parse CSV
 function parseCSV(text){
   var lines=text.split("\n"),results=[];
   for(var i=1;i<lines.length;i++){
@@ -188,9 +184,7 @@ function parseCSV(text){
     var cols=[],cur="",inQ=false;
     for(var c=0;c<line.length;c++){
       var ch=line[c];
-      if(ch==='"'){inQ=!inQ;}
-      else if(ch===","&&!inQ){cols.push(cur);cur="";}
-      else{cur+=ch;}
+      if(ch==='"'){inQ=!inQ;}else if(ch===","&&!inQ){cols.push(cur);cur="";}else{cur+=ch;}
     }
     cols.push(cur);
     if(cols.length<4)continue;
@@ -209,58 +203,38 @@ function parseCSV(text){
   return results;
 }
 
-// Load all visits from CSV (for commerces tab and autocomplete)
 function loadFromCSV(){
   syncSt("sy","Sincronizando...");
   fetch(CSV_URL+"&cb="+Date.now())
     .then(function(r){return r.text();})
     .then(function(text){
       allVisits=parseCSV(text);
-      // Merge local visits that might not be in sheets yet
-      var localToday=visits.filter(function(v){return v.date===today();});
-      localToday.forEach(function(lv){
+      // Merge local
+      visits.forEach(function(lv){
         var found=allVisits.some(function(av){return av.ts===lv.ts&&av.vendor===lv.vendor;});
         if(!found)allVisits.unshift(lv);
       });
       syncSt("ok","Sincronizado");
       render();
     })
-    .catch(function(){
-      syncSt("er","Modo offline");
-      render();
-    });
+    .catch(function(){syncSt("er","Modo offline");render();});
 }
 
-// Build unique commerce directory from all visits
 function buildCommerceDir(){
   var map={};
   allVisits.forEach(function(v){
     if(!v.commerce)return;
     var key=v.commerce.toLowerCase().trim();
-    if(!map[key]){
-      map[key]={
-        name:v.commerce,
-        contact:v.contact||"",
-        phone:v.phone||"",
-        location:v.location||"",
-        visits:[],
-        lastVendor:v.vendor,
-        lastDate:v.date
-      };
-    }
-    // Update with most recent info
+    if(!map[key]){map[key]={name:v.commerce,contact:"",phone:"",location:"",visits:[],lastTs:"",lastDate:"",lastVendor:""};}
     if(v.ts>=(map[key].lastTs||"")){
-      map[key].lastTs=v.ts;
-      map[key].lastDate=v.date;
-      map[key].lastVendor=v.vendor;
+      map[key].lastTs=v.ts;map[key].lastDate=v.date;map[key].lastVendor=v.vendor;
       if(v.contact)map[key].contact=v.contact;
       if(v.phone)map[key].phone=v.phone;
       if(v.location)map[key].location=v.location;
     }
     map[key].visits.push(v);
   });
-  var arr=[];
-  for(var k in map)arr.push(map[k]);
+  var arr=[];for(var k in map)arr.push(map[k]);
   arr.sort(function(a,b){return(b.lastTs||"").localeCompare(a.lastTs||"");});
   return arr;
 }
@@ -268,11 +242,9 @@ function buildCommerceDir(){
 // AUTOCOMPLETE
 function onCommerceInput(val){
   if(acHideTimer){clearTimeout(acHideTimer);acHideTimer=null;}
-  var list=document.getElementById("ac-list");
-  if(!list)return;
+  var list=document.getElementById("ac-list");if(!list)return;
   if(!val||val.length<2){list.style.display="none";return;}
-  var q=val.toLowerCase();
-  var dir=buildCommerceDir();
+  var q=val.toLowerCase(),dir=buildCommerceDir();
   var matches=dir.filter(function(c){return c.name.toLowerCase().indexOf(q)>=0;}).slice(0,6);
   if(!matches.length){list.style.display="none";return;}
   var h="";
@@ -280,30 +252,17 @@ function onCommerceInput(val){
     var cnt=c.visits.length;
     h+='<div class="ac-item" onmousedown="selectCommerce(\''+esc(c.name)+'\')">';
     h+='<div class="ac-name">'+esc(c.name)+'<span class="ac-badge">'+cnt+" visita"+(cnt>1?"s":"")+"</span></div>";
-    var sub=[];
-    if(c.contact)sub.push(c.contact);
-    if(c.phone)sub.push(c.phone);
+    var sub=[];if(c.contact)sub.push(c.contact);if(c.phone)sub.push(c.phone);
     if(sub.length)h+='<div class="ac-sub">'+esc(sub.join(" · "))+"</div>";
     h+="</div>";
   });
-  list.innerHTML=h;
-  list.style.display="block";
+  list.innerHTML=h;list.style.display="block";
 }
-function onCommerceFocus(){
-  var val=document.getElementById("f-commerce").value;
-  if(val.length>=2)onCommerceInput(val);
-}
-function hideAC(){
-  acHideTimer=setTimeout(function(){
-    var list=document.getElementById("ac-list");
-    if(list)list.style.display="none";
-  },200);
-}
+function onCommerceFocus(){var val=document.getElementById("f-commerce").value;if(val.length>=2)onCommerceInput(val);}
+function hideAC(){acHideTimer=setTimeout(function(){var l=document.getElementById("ac-list");if(l)l.style.display="none";},200);}
 function selectCommerce(name){
   document.getElementById("f-commerce").value=name;
-  var list=document.getElementById("ac-list");
-  if(list)list.style.display="none";
-  // Pre-fill contact, phone, location from most recent record
+  var l=document.getElementById("ac-list");if(l)l.style.display="none";
   var dir=buildCommerceDir();
   var found=dir.find(function(c){return c.name.toLowerCase()===name.toLowerCase();});
   if(found){
@@ -312,15 +271,13 @@ function selectCommerce(name){
     if(found.location){
       var li=document.getElementById("f-loc");if(li)li.value=found.location;
       var ps=document.getElementById("gps-status");
-      if(ps){ps.style.display="block";ps.textContent="Ubicacion pre-cargada del registro anterior";}
+      if(ps){ps.style.display="block";ps.textContent="Ubicacion cargada del registro anterior";}
     }
     toast("Comercio encontrado - info pre-cargada","#0d9488");
   }
 }
 
-function todayVisits(){
-  return visits.filter(function(v){return v.date===today();});
-}
+function todayVisits(){return visits.filter(function(v){return v.date===today();});}
 function updateCounters(){
   var tv=todayVisits();
   var vis=tv.filter(function(v){return v.type!=="cierre";}).length;
@@ -345,9 +302,7 @@ function renderHoy(){
   h+='<div class="cnt"><div class="cnt-val" id="cnt-visitas" style="color:var(--teal)">'+tv.filter(function(v){return v.type!=="cierre";}).length+'</div><div class="cnt-lbl">Visitas</div></div>';
   h+='<div class="cnt"><div class="cnt-val" id="cnt-cierres" style="color:var(--gr)">'+tv.filter(function(v){return v.type==="cierre";}).length+'</div><div class="cnt-lbl">Cierres</div></div>';
   h+='<div class="cnt"><div class="cnt-val" id="cnt-total" style="color:var(--mu)">'+tv.length+'</div><div class="cnt-lbl">Total hoy</div></div>';
-  h+="</div>";
-  h+='<button class="newbtn" onclick="openForm()">+ Registrar</button>';
-  h+="</div>";
+  h+="</div><button class=\"newbtn\" onclick=\"openForm(null)\">+ Registrar</button></div>";
   h+='<div class="sec-lbl">Actividad de hoy ('+tv.length+" registros)</div>";
   if(!tv.length){
     h+='<div class="empty-state"><div style="font-size:36px;margin-bottom:10px">&#128205;</div>';
@@ -361,62 +316,50 @@ function renderHoy(){
 
 function renderComercios(){
   var dir=buildCommerceDir();
-  var h='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">';
-  h+='<div class="sec-lbl" style="margin-bottom:0">Comercios registrados ('+dir.length+")</div></div>";
+  var h='<div style="margin-bottom:12px"><div class="sec-lbl" style="margin-bottom:0">Comercios registrados ('+dir.length+")</div></div>";
   if(!dir.length){
     h+='<div class="empty-state"><div style="font-size:36px;margin-bottom:10px">&#127978;</div>';
-    h+='<div style="font-size:14px;font-weight:600;color:#cbd5e1">Sin comercios aun</div>';
-    h+='<div style="font-size:12px;margin-top:6px">Los comercios aparecen aqui al registrar visitas</div></div>';
+    h+='<div style="font-size:14px;font-weight:600;color:#cbd5e1">Sin comercios aun</div></div>';
     return h;
   }
-  // Search bar
   h+='<input type="text" id="com-search" placeholder="Buscar comercio..." oninput="filterComercios(this.value)" style="width:100%;background:var(--b);border:1px solid var(--b2);border-radius:10px;color:var(--tx);font-size:14px;font-family:var(--fn);padding:10px 14px;margin-bottom:12px">';
   h+='<div id="com-list">';
   for(var i=0;i<dir.length;i++)h+=comercioCard(dir[i]);
   h+="</div>";
   return h;
 }
-
 function filterComercios(q){
   var dir=buildCommerceDir();
   if(q)dir=dir.filter(function(c){return c.name.toLowerCase().indexOf(q.toLowerCase())>=0;});
-  var el=document.getElementById("com-list");
-  if(!el)return;
-  var h="";
-  for(var i=0;i<dir.length;i++)h+=comercioCard(dir[i]);
+  var el=document.getElementById("com-list");if(!el)return;
+  var h="";for(var i=0;i<dir.length;i++)h+=comercioCard(dir[i]);
   el.innerHTML=h||'<div style="font-size:13px;color:#475569;padding:20px 0">Sin resultados</div>';
 }
-
 function comercioCard(c){
   var cnt=c.visits.length;
-  var types={};
-  c.visits.forEach(function(v){types[v.type]=(types[v.type]||0)+1;});
-  var h='<div class="com-card">';
-  h+='<div class="com-name">'+esc(c.name)+'<span class="com-visits">'+cnt+" visita"+(cnt>1?"s":"")+"</span></div>";
+  var types={};c.visits.forEach(function(v){types[v.type]=(types[v.type]||0)+1;});
+  var typeNames={visita:"Visitas",prospecto:"Prospectos",cierre:"Cierres",seguimiento:"Seguimientos",propuesta:"Propuestas",otro:"Otros"};
+  var h='<div class="com-card"><div class="com-name">'+esc(c.name)+'<span style="font-size:11px;background:var(--b);padding:2px 8px;border-radius:6px;color:var(--tx2);font-weight:600;margin-left:8px">'+cnt+" visita"+(cnt>1?"s":"")+"</span></div>";
   h+='<div class="com-meta">';
   if(c.contact)h+='<div class="com-tag">&#128100; '+esc(c.contact)+"</div>";
   if(c.phone)h+='<div class="com-tag">&#128222; <a href="tel:'+esc(c.phone)+'" style="color:var(--teal);text-decoration:none">'+esc(c.phone)+"</a></div>";
   h+="</div>";
-  // Type breakdown
-  var typeNames={visita:"Visitas",prospecto:"Prospectos",cierre:"Cierres",seguimiento:"Seguimientos",propuesta:"Propuestas",otro:"Otros"};
-  var pills="";
-  for(var t in types)pills+='<span style="font-size:10px;background:var(--b);padding:2px 7px;border-radius:5px;color:var(--tx2);margin-right:4px">'+typeNames[t]+": "+types[t]+"</span>";
+  var pills="";for(var t in types)pills+='<span style="font-size:10px;background:var(--b);padding:2px 7px;border-radius:5px;color:var(--tx2);margin-right:4px">'+typeNames[t]+": "+types[t]+"</span>";
   if(pills)h+='<div style="margin-bottom:6px">'+pills+"</div>";
-  if(c.location)h+='<a href="'+esc(c.location)+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--gr);text-decoration:none;background:rgba(16,185,129,.08);padding:3px 8px;border-radius:6px;margin-bottom:6px">&#128205; Ver ubicacion GPS</a>';
-  h+='<div class="com-last">Ultimo registro: '+fdate(c.lastDate)+" · "+esc(c.lastVendor)+"</div>";
-  h+="</div>";
+  if(c.location)h+='<a href="'+esc(c.location)+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--gr);text-decoration:none;background:rgba(16,185,129,.08);padding:3px 8px;border-radius:6px;margin-bottom:6px">&#128205; Ver GPS</a>';
+  h+='<div style="font-size:11px;color:var(--mu)">Ultimo: '+fdate(c.lastDate)+" · "+esc(c.lastVendor)+"</div></div>";
   return h;
 }
 
 function visitCard(v){
   var tmap={visita:"Visita",prospecto:"Prospecto",cierre:"Cierre",seguimiento:"Seguimiento",propuesta:"Propuesta",otro:"Otro"};
-  var h='<div class="visit-item">';
-  h+='<div class="vi-top"><span class="vi-type '+(v.type||"visita")+'">'+(tmap[v.type]||v.type)+"</span>";
-  h+='<span class="vi-time">'+ftime(v.ts)+"</span></div>";
+  var h='<div class="visit-item"><div class="vi-top">';
+  h+='<span class="vi-type '+(v.type||"visita")+'">'+(tmap[v.type]||v.type)+"</span>";
+  h+='<span class="vi-time">'+ftime(v.ts)+"</span>";
+  h+='<button class="vi-editbtn" onclick="openForm(\''+esc(v.ts)+'\')">&#9998; Editar</button>';
+  h+="</div>";
   h+='<div class="vi-name">'+esc(v.commerce||"Sin nombre")+"</div>";
-  var sub=[];
-  if(v.contact)sub.push(v.contact);
-  if(v.phone)sub.push(v.phone);
+  var sub=[];if(v.contact)sub.push(v.contact);if(v.phone)sub.push(v.phone);
   if(sub.length)h+='<div class="vi-sub">'+esc(sub.join(" · "))+"</div>";
   if(v.result)h+='<div class="vi-note">'+esc(v.result)+"</div>";
   if(v.location)h+='<a class="vi-gps" href="'+esc(v.location)+'" target="_blank">&#128205; Ver GPS</a>';
@@ -427,12 +370,24 @@ function visitCard(v){
 function setTab(tab,el){
   currentTab=tab;
   document.querySelectorAll(".tab").forEach(function(t){t.className="tab";});
-  el.className="tab on";
-  render();
+  el.className="tab on";render();
 }
 
-function openForm(){
-  document.getElementById("fmodal").className="open";
+// openForm(ts) — null = new visit, ts = edit existing
+function openForm(ts){
+  editingTs=ts;
+  var isEdit=(ts!==null&&ts!==undefined&&ts!=="null");
+  // Update modal header
+  var titleEl=document.getElementById("fm-title");
+  var editBadge=document.getElementById("fm-edit-badge");
+  var saveLbl=document.getElementById("savelbl");
+  var saveBtn=document.getElementById("savebtn");
+  if(titleEl)titleEl.textContent=isEdit?"Editar visita":"Registrar visita";
+  if(editBadge)editBadge.style.display=isEdit?"inline":"none";
+  if(saveLbl)saveLbl.textContent=isEdit?"Guardar cambios":"Guardar visita";
+  if(saveBtn)saveBtn.style.background=isEdit?"#d97706":"var(--teal)";
+
+  // Reset fields
   document.getElementById("f-commerce").value="";
   document.getElementById("f-contact").value="";
   document.getElementById("f-phone").value="";
@@ -442,9 +397,27 @@ function openForm(){
   var ac=document.getElementById("ac-list");if(ac)ac.style.display="none";
   var gpsbtn=document.getElementById("gpsbtn");if(gpsbtn){gpsbtn.disabled=false;gpsbtn.textContent="Mi GPS";gpsbtn.style.background="";}
   setTypeByName("visita");
+
+  if(isEdit){
+    // Find the visit and pre-fill
+    var found=null;
+    for(var i=0;i<visits.length;i++){if(visits[i].ts===ts){found=visits[i];break;}}
+    if(found){
+      document.getElementById("f-commerce").value=found.commerce||"";
+      document.getElementById("f-contact").value=found.contact||"";
+      document.getElementById("f-phone").value=found.phone||"";
+      document.getElementById("f-result").value=found.result||"";
+      document.getElementById("f-loc").value=found.location||"";
+      if(found.location){var ps=document.getElementById("gps-status");if(ps){ps.style.display="block";ps.textContent="Ubicacion registrada previamente";}}
+      setTypeByName(found.type||"visita");
+    }
+  }
+
+  document.getElementById("fmodal").className="open";
   setTimeout(function(){var i=document.getElementById("f-commerce");if(i)i.focus();},300);
 }
-function closeForm(){document.getElementById("fmodal").className="";}
+function closeForm(){document.getElementById("fmodal").className="";editingTs=null;}
+
 function setType(btn){
   document.querySelectorAll(".type-btn").forEach(function(b){b.className="type-btn";});
   btn.className="type-btn sel";currentType=btn.getAttribute("data-type");
@@ -464,7 +437,7 @@ function doGPS(){
       var lat=pos.coords.latitude.toFixed(6),lng=pos.coords.longitude.toFixed(6),acc=Math.round(pos.coords.accuracy);
       var url="https://www.google.com/maps?q="+lat+","+lng;
       document.getElementById("f-loc").value=url;
-      if(status){status.style.display="block";status.textContent="GPS capturado (precision: +-"+acc+"m)";}
+      if(status){status.style.display="block";status.textContent="GPS capturado (+-"+acc+"m)";}
       btn.disabled=false;btn.textContent="Actualizar";btn.style.background="#059669";
       toast("Ubicacion registrada","#10b981");
     },
@@ -485,25 +458,52 @@ function submitVisit(){
   isSaving=true;
   var btn=document.getElementById("savebtn"),sp=document.getElementById("savespin"),lb=document.getElementById("savelbl");
   if(btn)btn.disabled=true;if(sp)sp.style.display="block";if(lb)lb.textContent="Guardando...";
+
+  var isEdit=(editingTs!==null&&editingTs!==undefined);
+  var tsToUse=isEdit?editingTs:(today()+"T"+new Date().toTimeString().split(" ")[0]);
+
   var visit={
-    ts:today()+"T"+new Date().toTimeString().split(" ")[0],
-    date:today(),type:currentType,commerce:commerce,
+    ts:tsToUse, date:today(), type:currentType, commerce:commerce,
     contact:document.getElementById("f-contact").value.trim(),
     phone:document.getElementById("f-phone").value.trim(),
     result:document.getElementById("f-result").value.trim(),
     location:document.getElementById("f-loc").value.trim(),
-    vendor:VNAME
+    vendor:VNAME,
+    edit:isEdit?1:0  // flag for Apps Script to know it's an edit
   };
-  visits.unshift(visit);
-  allVisits.unshift(visit);
+
+  if(isEdit){
+    // Update in local array
+    for(var i=0;i<visits.length;i++){
+      if(visits[i].ts===editingTs){visits[i]=visit;break;}
+    }
+    for(var i=0;i<allVisits.length;i++){
+      if(allVisits[i].ts===editingTs&&allVisits[i].vendor===VNAME){allVisits[i]=visit;break;}
+    }
+  }else{
+    visits.unshift(visit);
+    allVisits.unshift(visit);
+  }
   lsSave();
   closeForm();
   render();
-  syncSt("sy","Enviando...");
+
+  syncSt("sy",isEdit?"Actualizando...":"Enviando...");
   fetch(GAS,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(visit),mode:"no-cors"})
-    .then(function(){syncSt("ok","Enviado correctamente");toast("Visita registrada","#10b981");})
-    .catch(function(){syncSt("er","Guardado sin conexion");toast("Guardado offline","#f59e0b");})
-    .finally(function(){isSaving=false;if(btn)btn.disabled=false;if(sp)sp.style.display="none";if(lb)lb.textContent="Guardar visita";});
+    .then(function(){
+      syncSt("ok",isEdit?"Registro actualizado":"Enviado correctamente");
+      toast(isEdit?"Visita actualizada":"Visita registrada","#10b981");
+    })
+    .catch(function(){
+      syncSt("er","Guardado sin conexion");
+      toast("Guardado offline","#f59e0b");
+    })
+    .finally(function(){
+      isSaving=false;
+      if(btn)btn.disabled=false;
+      if(sp)sp.style.display="none";
+      if(lb)lb.textContent=isEdit?"Guardar cambios":"Guardar visita";
+    });
 }
 
 visits=lsLoad();
