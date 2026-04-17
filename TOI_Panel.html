@@ -5,14 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>TOI - Panel Gerencial</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#050c18;--bg2:#0a1628;--bg3:#0f172a;--b:#1e293b;--b2:#334155;--teal:#0d9488;--sl:#475569;--mu:#64748b;--tx:#f1f5f9;--tx2:#cbd5e1;--gr:#10b981;--am:#f59e0b;--rd:#ef4444;--fn:'DM Sans',sans-serif}
 body{background:var(--bg);color:var(--tx);font-family:var(--fn);min-height:100vh}
-input:focus,textarea:focus,select:focus{outline:none;border-color:var(--teal)!important;box-shadow:0 0 0 2px rgba(13,148,136,.15)}
 button{font-family:var(--fn);cursor:pointer}
-@keyframes spin{to{transform:rotate(360deg)}}
+input,select{font-family:var(--fn)}
+input:focus,select:focus{outline:none;border-color:var(--teal)!important}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 #hdr{background:var(--bg2);border-bottom:1px solid var(--b);padding:14px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50}
 .logo{background:var(--teal);width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#fff;flex-shrink:0}
 #sbar{background:var(--bg2);border-bottom:1px solid var(--b);padding:6px 20px;display:flex;align-items:center;gap:8px;font-size:11px;color:var(--mu)}
@@ -20,85 +21,52 @@ button{font-family:var(--fn);cursor:pointer}
 .sd.sy{background:var(--am);animation:pulse 1s infinite}
 .sd.ok{background:var(--gr)}
 .sd.er{background:var(--rd)}
-#tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--b);padding:0 16px}
-.tab{background:none;border:none;padding:11px 14px;font-size:13px;font-weight:500;color:var(--sl);border-bottom:2px solid transparent}
-.tab.on{font-weight:700;color:var(--teal);border-bottom-color:var(--teal)}
-#wrap{padding:16px;max-width:540px;margin:0 auto}
-.daycard{background:var(--bg3);border:1px solid var(--b);border-radius:16px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px}
-.av{border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex-shrink:0}
-.counters{display:flex;gap:16px;flex:1}
-.cnt{text-align:center}
-.cnt-val{font-size:22px;font-weight:800;line-height:1}
-.cnt-lbl{font-size:10px;color:var(--mu);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
-.newbtn{background:var(--teal);border:none;border-radius:12px;color:#fff;font-size:13px;font-weight:700;padding:10px 16px;white-space:nowrap}
-.sec-lbl{font-size:11px;color:var(--sl);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
-/* MODAL */
-#fmodal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.87);backdrop-filter:blur(4px);z-index:100;align-items:flex-end;justify-content:center}
-#fmodal.open{display:flex}
-#fbox{background:var(--bg3);border-radius:20px 20px 0 0;width:100%;max-width:520px;max-height:93vh;overflow:hidden;display:flex;flex-direction:column;animation:slideIn .25s ease}
-.fmhdr{padding:16px 20px 12px;border-bottom:1px solid var(--b);display:flex;align-items:center;justify-content:space-between}
-.fmtitle{font-size:16px;font-weight:700}
-.fmclose{background:var(--b);border:none;border-radius:8px;color:var(--mu);font-size:18px;width:32px;height:32px;display:flex;align-items:center;justify-content:center}
-.fmbody{overflow-y:auto;padding:12px 20px 8px;flex:1}
-.fi{margin-bottom:14px;position:relative}
-.fi label{display:block;font-size:12px;font-weight:600;color:var(--tx2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
-.fi input,.fi textarea,.fi select{width:100%;background:var(--b);border:1px solid var(--b2);border-radius:10px;color:var(--tx);font-size:14px;font-family:var(--fn);padding:11px 14px}
-.fi textarea{resize:vertical}
-/* AUTOCOMPLETE */
-.ac-list{position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--teal);border-radius:10px;z-index:200;max-height:180px;overflow-y:auto;margin-top:2px;display:none}
-.ac-item{padding:10px 14px;cursor:pointer;border-bottom:1px solid var(--b);font-size:13px}
-.ac-item:last-child{border-bottom:none}
-.ac-item:hover{background:rgba(13,148,136,.12)}
-.ac-name{font-weight:700;color:var(--tx)}
-.ac-sub{font-size:11px;color:var(--mu);margin-top:2px}
-.ac-badge{font-size:10px;background:rgba(13,148,136,.15);color:var(--teal);padding:1px 6px;border-radius:4px;margin-left:6px;font-weight:600}
-/* TYPE BUTTONS */
-.type-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-.type-btn{background:var(--b);border:1px solid var(--b2);border-radius:10px;color:var(--mu);font-size:12px;font-weight:600;padding:10px 6px;text-align:center;transition:all .2s}
-.type-btn.sel{background:rgba(13,148,136,.15);border-color:var(--teal);color:var(--teal)}
-/* GPS */
-.gps-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:14px;margin-bottom:14px}
-.gps-title{font-size:12px;font-weight:700;color:var(--gr);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
-.gps-row{display:flex;gap:8px}
-.gps-inp{flex:1;background:var(--b);border:1px solid var(--b2);border-radius:10px;color:var(--tx);font-size:12px;font-family:var(--fn);padding:10px 12px;min-width:0}
-.gps-btn{background:var(--gr);border:none;border-radius:10px;color:#fff;font-size:12px;font-weight:700;padding:10px 14px;white-space:nowrap;flex-shrink:0}
-.gps-btn:disabled{background:var(--sl)}
-.gps-status{font-size:11px;color:var(--gr);margin-top:6px;display:none}
-.gps-note{font-size:11px;color:var(--mu);margin-top:6px;line-height:1.4}
-/* SAVE */
-.fmfoot{padding:12px 20px 20px;border-top:1px solid var(--b)}
-.savebtn{width:100%;background:var(--teal);border:none;border-radius:14px;color:#fff;font-size:15px;font-weight:700;padding:15px;font-family:var(--fn);display:flex;align-items:center;justify-content:center;gap:8px}
-.savebtn:disabled{background:var(--sl)}
-.spin{display:none;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
-/* VISIT LOG */
-.visit-item{background:var(--bg3);border:1px solid var(--b);border-radius:14px;padding:14px 16px;margin-bottom:8px;animation:slideIn .3s ease}
-.vi-top{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
-.vi-type{font-size:10px;font-weight:700;padding:3px 8px;border-radius:6px;text-transform:uppercase;letter-spacing:.05em}
-.vi-type.visita{background:rgba(13,148,136,.15);color:var(--teal)}
-.vi-type.prospecto{background:rgba(245,158,11,.15);color:var(--am)}
-.vi-type.cierre{background:rgba(16,185,129,.2);color:var(--gr)}
-.vi-type.seguimiento{background:rgba(99,102,241,.15);color:#818cf8}
-.vi-type.propuesta{background:rgba(59,130,246,.15);color:#60a5fa}
-.vi-type.otro{background:rgba(71,85,105,.2);color:var(--sl)}
-.vi-time{font-size:11px;color:var(--mu);margin-left:auto}
-.vi-name{font-size:14px;font-weight:700;margin-bottom:3px}
-.vi-sub{font-size:12px;color:var(--mu)}
-.vi-note{font-size:12px;color:var(--tx2);margin-top:6px;padding-top:6px;border-top:1px solid var(--b)}
-.vi-gps{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--gr);text-decoration:none;margin-top:6px;background:rgba(16,185,129,.08);padding:3px 8px;border-radius:6px}
-/* COMERCIOS TAB */
-.com-card{background:var(--bg3);border:1px solid var(--b);border-radius:14px;padding:14px 16px;margin-bottom:8px}
-.com-name{font-size:14px;font-weight:700;margin-bottom:4px}
-.com-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
-.com-tag{font-size:11px;color:var(--mu);display:flex;align-items:center;gap:4px}
-.com-visits{font-size:11px;background:var(--b);padding:2px 8px;border-radius:6px;color:var(--tx2);font-weight:600}
-.com-last{font-size:11px;color:var(--mu);margin-top:4px}
-.empty-state{text-align:center;padding:40px 20px;color:var(--sl)}
-#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:30px;display:none;z-index:300;box-shadow:0 4px 20px rgba(0,0,0,.4);white-space:nowrap}
+/* SUMMARY BAR */
 #sumbar{display:grid;grid-template-columns:repeat(4,1fr);background:var(--b);border-bottom:1px solid var(--b);gap:1px}
-.sc{background:var(--bg2);padding:10px 14px;text-align:center}
+.sc{background:var(--bg2);padding:10px 14px;text-align:center;cursor:pointer;transition:background .2s}
+.sc:hover{background:#0d1f35}
+.sc.active{background:rgba(13,148,136,.1);border-bottom:2px solid var(--teal)}
 .sv{font-size:20px;font-weight:800;line-height:1}
 .sm{font-size:10px;color:var(--mu);margin-top:3px}
-#rfbtn{margin-left:auto;background:none;border:1px solid var(--b2);border-radius:6px;color:var(--mu);font-size:11px;padding:2px 10px}
+/* TABS */
+#tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--b);padding:0 16px;overflow-x:auto}
+.tab{background:none;border:none;padding:11px 14px;font-size:13px;font-weight:500;color:var(--sl);border-bottom:2px solid transparent;white-space:nowrap}
+.tab.on{font-weight:700;color:var(--teal);border-bottom-color:var(--teal)}
+#rfbtn{margin-left:auto;background:none;border:1px solid var(--b2);border-radius:6px;color:var(--mu);font-size:11px;padding:2px 10px;flex-shrink:0}
+/* FILTERS */
+#filters{background:var(--bg2);border-bottom:1px solid var(--b);padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end}
+.flt-group{display:flex;flex-direction:column;gap:4px}
+.flt-label{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.flt-input{background:var(--bg3);border:1px solid var(--b2);border-radius:8px;color:var(--tx);font-size:12px;padding:7px 10px;min-width:110px}
+.flt-input:focus{border-color:var(--teal)}
+.flt-btn{background:var(--teal);border:none;border-radius:8px;color:#fff;font-size:12px;font-weight:700;padding:7px 16px;align-self:flex-end}
+.flt-clear{background:var(--b);border:1px solid var(--b2);border-radius:8px;color:var(--mu);font-size:12px;font-weight:600;padding:7px 12px;align-self:flex-end}
+.flt-badge{font-size:10px;background:rgba(13,148,136,.15);color:var(--teal);border-radius:10px;padding:2px 8px;font-weight:700}
+/* CONTENT */
+#wrap{padding:16px;max-width:720px;margin:0 auto}
+/* RESUMEN TAB */
+.res-section{margin-bottom:24px}
+.res-title{font-size:11px;color:var(--sl);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--b)}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+.kpi-card{background:var(--bg3);border:1px solid var(--b);border-radius:12px;padding:14px;text-align:center}
+.kpi-val{font-size:28px;font-weight:800;line-height:1}
+.kpi-lbl{font-size:10px;color:var(--mu);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+.kpi-sub{font-size:10px;color:var(--sl);margin-top:2px}
+.vendor-row{background:var(--bg3);border:1px solid var(--b);border-radius:12px;padding:12px 16px;margin-bottom:6px;display:flex;align-items:center;gap:12px}
+.av{border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex-shrink:0}
+.vmet{display:flex;gap:14px;flex:1;flex-wrap:wrap}
+.vm{text-align:center}
+.vm-val{font-size:16px;font-weight:800;line-height:1}
+.vm-lbl{font-size:9px;color:var(--mu);text-transform:uppercase}
+.type-bar{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.type-pill{font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600}
+.tp-visita{background:rgba(13,148,136,.15);color:var(--teal)}
+.tp-prospecto{background:rgba(245,158,11,.15);color:var(--am)}
+.tp-cierre{background:rgba(16,185,129,.2);color:var(--gr)}
+.tp-seguimiento{background:rgba(99,102,241,.15);color:#818cf8}
+.tp-propuesta{background:rgba(59,130,246,.15);color:#60a5fa}
+.tp-otro{background:rgba(71,85,105,.2);color:var(--sl)}
+/* VISIT ROW */
 .vrow{background:var(--bg3);border:1px solid var(--b);border-radius:12px;padding:12px 14px;margin-bottom:6px;animation:slideIn .3s ease}
 .vr-top{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
 .vbadge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:.04em}
@@ -114,38 +82,110 @@ button{font-family:var(--fn);cursor:pointer}
 .vr-sub{font-size:11px;color:var(--mu);margin-top:2px}
 .vr-result{font-size:11px;color:var(--tx2);margin-top:6px;padding-top:6px;border-top:1px solid var(--b)}
 .vr-gps{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--gr);text-decoration:none;margin-top:5px;background:rgba(16,185,129,.08);padding:2px 8px;border-radius:5px}
-.vendor-block{background:var(--bg3);border:1px solid var(--b);border-radius:14px;overflow:hidden;margin-bottom:12px}
-.vb-hdr{padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--b)}
-.av{border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex-shrink:0}
-.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
-.mini-card{background:var(--bg3);border:1px solid var(--b);border-radius:12px;padding:10px;text-align:center}
-.sec-lbl{font-size:12px;color:var(--sl);margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+/* COMERCIOS */
+.com-card{background:var(--bg3);border:1px solid var(--b);border-radius:12px;padding:12px 14px;margin-bottom:6px}
+.com-name{font-size:13px;font-weight:700;margin-bottom:4px}
+.com-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px;font-size:11px;color:var(--mu)}
+/* CHART BAR */
+.bar-wrap{background:var(--b);border-radius:4px;overflow:hidden;height:8px;flex:1}
+.bar-fill{height:100%;border-radius:4px;transition:width .5s}
+/* MISC */
+.sec-lbl{font-size:11px;color:var(--sl);margin-bottom:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.empty{text-align:center;padding:40px 20px;color:var(--sl)}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:30px;display:none;z-index:200;box-shadow:0 4px 20px rgba(0,0,0,.4)}
 </style>
 </head>
 <body>
-<div id="hdr"><div class="logo">T</div><div><div style="font-size:15px;font-weight:800">TOI - Panel Gerencial</div><div id="hdate" style="font-size:11px;color:var(--sl)"></div></div><div id="pill" style="margin-left:auto;border-radius:20px;padding:4px 14px;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border:1px solid #334155;background:rgba(71,85,105,.12)"><div id="pd" style="width:6px;height:6px;border-radius:50%;background:#475569;flex-shrink:0"></div><span id="pt" style="color:#475569">Cargando...</span></div></div>
-<div id="sbar"><div class="sd" id="sd"></div><span id="st">Conectando...</span><button id="rfbtn" onclick="loadData()">&#8635; Actualizar</button></div>
-<div id="sumbar"><div class="sc"><div class="sv" id="sv">-</div><div class="sm">Visitas hoy</div></div><div class="sc"><div class="sv" id="scl">-</div><div class="sm">Cierres hoy</div></div><div class="sc"><div class="sv" id="spr">-</div><div class="sm">Prospectos</div></div><div class="sc"><div class="sv" id="stot">-</div><div class="sm">Total hoy</div></div></div>
-<div id="tabs"><button class="tab on" onclick="setTab('hoy',this)">Hoy</button><button class="tab" onclick="setTab('vendedor',this)">Por vendedor</button><button class="tab" onclick="setTab('comercios',this)">Comercios</button><button class="tab" onclick="setTab('todo',this)">Todos</button></div>
-<div id="wrap" style="padding:16px;max-width:680px;margin:0 auto"><p style="color:#475569;padding:20px 0">Cargando...</p></div>
-<div id="toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-size:13px;font-weight:600;padding:10px 20px;border-radius:30px;display:none;z-index:200;box-shadow:0 4px 20px rgba(0,0,0,.4)"></div>
-<script>
-var CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vQBmrVjL_vJpzgT1F6WNE0ToxrTNXEgrfbgVPZ_sv_LcGiso00JjBfrHz6L2jI9h6veF_GWvExBi7K7/pub?gid=250315356&single=true&output=csv";
+<div id="hdr">
+  <div class="logo">T</div>
+  <div><div style="font-size:15px;font-weight:800">TOI - Panel Gerencial</div><div id="hdate" style="font-size:11px;color:var(--sl)"></div></div>
+  <div id="pill" style="margin-left:auto;border-radius:20px;padding:4px 14px;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border:1px solid #334155">
+    <div id="pd" style="width:6px;height:6px;border-radius:50%;background:#475569;flex-shrink:0"></div>
+    <span id="pt" style="color:#475569">Cargando...</span>
+  </div>
+</div>
+<div id="sbar">
+  <div class="sd" id="sd"></div>
+  <span id="st">Conectando...</span>
+  <button id="rfbtn" onclick="loadData()">&#8635; Actualizar</button>
+</div>
 
-var ALL=[];
-var TAB="hoy";
-var VS=[{name:"Darwin Solano",color:"#0d9488"},{name:"Carolina",color:"#7c3aed"},{name:"Frank",color:"#1d4ed8"}];
-var MONTHS=["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+<!-- SUMMARY BAR -->
+<div id="sumbar">
+  <div class="sc" onclick="filterByType('')"><div class="sv" id="s-total">-</div><div class="sm">Total registros</div></div>
+  <div class="sc" onclick="filterByType('cierre')"><div class="sv" id="s-cierres" style="color:var(--gr)">-</div><div class="sm">Cierres</div></div>
+  <div class="sc" onclick="filterByType('prospecto')"><div class="sv" id="s-prosp" style="color:var(--am)">-</div><div class="sm">Prospectos</div></div>
+  <div class="sc" onclick="filterByType('visita')"><div class="sv" id="s-visitas" style="color:var(--teal)">-</div><div class="sm">Visitas</div></div>
+</div>
+
+<!-- FILTERS -->
+<div id="filters">
+  <div class="flt-group">
+    <div class="flt-label">Desde</div>
+    <input type="date" class="flt-input" id="f-from">
+  </div>
+  <div class="flt-group">
+    <div class="flt-label">Hasta</div>
+    <input type="date" class="flt-input" id="f-to">
+  </div>
+  <div class="flt-group">
+    <div class="flt-label">Vendedor</div>
+    <select class="flt-input" id="f-vendor">
+      <option value="">Todos</option>
+      <option value="Darwin Solano">Darwin Solano</option>
+      <option value="Carolina">Carolina</option>
+      <option value="Frank">Frank</option>
+    </select>
+  </div>
+  <div class="flt-group">
+    <div class="flt-label">Tipo</div>
+    <select class="flt-input" id="f-type">
+      <option value="">Todos</option>
+      <option value="visita">Visita</option>
+      <option value="prospecto">Prospecto</option>
+      <option value="cierre">Cierre</option>
+      <option value="seguimiento">Seguimiento</option>
+      <option value="propuesta">Propuesta</option>
+      <option value="otro">Otro</option>
+    </select>
+  </div>
+  <button class="flt-btn" onclick="applyFilters()">Filtrar</button>
+  <button class="flt-clear" onclick="clearFilters()">&#10005; Limpiar</button>
+  <div id="flt-badge" style="display:none" class="flt-badge"></div>
+</div>
+
+<!-- TABS -->
+<div id="tabs">
+  <button class="tab on" onclick="setTab('resumen',this)">Resumen</button>
+  <button class="tab" onclick="setTab('hoy',this)">Hoy</button>
+  <button class="tab" onclick="setTab('vendedor',this)">Por vendedor</button>
+  <button class="tab" onclick="setTab('comercios',this)">Comercios</button>
+  <button class="tab" onclick="setTab('todo',this)">Todos</button>
+</div>
+
+<div id="wrap" style="padding:16px;max-width:720px;margin:0 auto">
+  <p style="color:#475569;padding:20px 0">Cargando...</p>
+</div>
+<div id="toast"></div>
+
+<script>
+var CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQBmrVjL_vJpzgT1F6WNE0ToxrTNXEgrfbgVPZ_sv_LcGiso00JjBfrHz6L2jI9h6veF_GWvExBi7K7/pub?gid=250315356&single=true&output=csv";
+var ALL = [];
+var FILTERED = [];
+var TAB = "resumen";
+var VS = [{name:"Darwin Solano",color:"#0d9488"},{name:"Carolina",color:"#7c3aed"},{name:"Frank",color:"#1d4ed8"}];
+var MONTHS = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+var TYPE_LABELS = {visita:"Visita",prospecto:"Prospecto",cierre:"Cierre",seguimiento:"Seguimiento",propuesta:"Propuesta",otro:"Otro"};
+var TYPE_CLS    = {visita:"vb-visita",prospecto:"vb-prospecto",cierre:"vb-cierre",seguimiento:"vb-seguimiento",propuesta:"vb-propuesta",otro:"vb-otro"};
 
 function today(){return new Date().toISOString().split("T")[0];}
 function ini(n){return n.split(" ").map(function(w){return w[0];}).join("").slice(0,2).toUpperCase();}
 function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-function ftime(s){if(!s)return"";try{return new Date(s).toLocaleTimeString("es-DO",{hour:"2-digit",minute:"2-digit"});}catch(e){return s;}}
-function fdate(s){if(!s)return"";var d=(s.indexOf("T")>=0?s.split("T")[0]:s);var p=d.split("-");if(p.length<3)return s;return parseInt(p[2])+" "+MONTHS[parseInt(p[1])-1];}
-function typeLabel(t){return{visita:"Visita",prospecto:"Prospecto",cierre:"Cierre",seguimiento:"Seguimiento",propuesta:"Propuesta",otro:"Otro"}[t]||t;}
-function typeCls(t){return{visita:"vb-visita",prospecto:"vb-prospecto",cierre:"vb-cierre",seguimiento:"vb-seguimiento",propuesta:"vb-propuesta",otro:"vb-otro"}[t]||"vb-otro";}
+function ftime(s){if(!s)return"";try{var d=new Date(s);if(isNaN(d))return s;return d.toLocaleTimeString("es-DO",{hour:"2-digit",minute:"2-digit"});}catch(e){return s;}}
+function fdate(s){if(!s)return"";var d=s.indexOf("T")>=0?s.split("T")[0]:s;var p=d.split("-");if(p.length<3)return s;return parseInt(p[2])+" "+MONTHS[parseInt(p[1])-1]+" "+p[0];}
+function fdateShort(s){if(!s)return"";var d=s.indexOf("T")>=0?s.split("T")[0]:s;var p=d.split("-");if(p.length<3)return s;return parseInt(p[2])+" "+MONTHS[parseInt(p[1])-1];}
 function syncSt(cls,msg){var d=document.getElementById("sd"),t=document.getElementById("st");if(d)d.className="sd "+cls;if(t)t.textContent=msg;}
-function el(id){return document.getElementById(id)||{textContent:"",style:{},innerHTML:""};}
+function elv(id){return document.getElementById(id);}
 
 function parseCSV(text){
   var lines=text.split("\n"),results=[];
@@ -160,7 +200,7 @@ function parseCSV(text){
     if(cols.length<4)continue;
     results.push({
       ts:      (cols[0]||"").trim(),
-      date:    (cols[1]||today()).trim(),
+      date:    (cols[1]||"").trim(),
       vendor:  (cols[2]||"").trim(),
       type:    (cols[3]||"").trim().toLowerCase(),
       commerce:(cols[4]||"").trim(),
@@ -179,51 +219,305 @@ function loadData(){
     .then(function(r){if(!r.ok)throw new Error("err");return r.text();})
     .then(function(text){
       ALL=parseCSV(text);
+      applyFilters();
       syncSt("ok","Actualizado - "+new Date().toLocaleTimeString("es-DO",{hour:"2-digit",minute:"2-digit"}));
-      render();
     })
     .catch(function(){syncSt("er","Sin conexion");render();});
 }
 
-function buildCommerceDir(){
+// ── FILTERS ──────────────────────────────────────────────────────────
+function applyFilters(){
+  var from   = elv("f-from")  ? elv("f-from").value  : "";
+  var to     = elv("f-to")    ? elv("f-to").value    : "";
+  var vendor = elv("f-vendor")? elv("f-vendor").value: "";
+  var type   = elv("f-type")  ? elv("f-type").value  : "";
+
+  FILTERED = ALL.filter(function(v){
+    var d = v.date || (v.ts?v.ts.split("T")[0]:"");
+    if(from && d < from) return false;
+    if(to   && d > to)   return false;
+    if(vendor && v.vendor !== vendor) return false;
+    if(type   && v.type   !== type)   return false;
+    return true;
+  });
+
+  // Badge
+  var active=[];
+  if(from||to) active.push((from?fdate(from):"inicio")+" → "+(to?fdate(to):"hoy"));
+  if(vendor)   active.push(vendor.split(" ")[0]);
+  if(type)     active.push(TYPE_LABELS[type]||type);
+  var badge=elv("flt-badge");
+  if(badge){
+    if(active.length){badge.textContent=FILTERED.length+" resultados · "+active.join(", ");badge.style.display="inline";}
+    else{badge.style.display="none";}
+  }
+
+  updateBar();
+  render();
+}
+
+function clearFilters(){
+  if(elv("f-from"))   elv("f-from").value="";
+  if(elv("f-to"))     elv("f-to").value="";
+  if(elv("f-vendor")) elv("f-vendor").value="";
+  if(elv("f-type"))   elv("f-type").value="";
+  applyFilters();
+}
+
+function filterByType(type){
+  if(elv("f-type")) elv("f-type").value=type;
+  applyFilters();
+}
+
+function updateBar(){
+  var data = FILTERED.length ? FILTERED : ALL;
+  var total  = data.length;
+  var cierres= data.filter(function(v){return v.type==="cierre";}).length;
+  var prosp  = data.filter(function(v){return v.type==="prospecto";}).length;
+  var vis    = data.filter(function(v){return v.type==="visita";}).length;
+  if(elv("s-total"))   elv("s-total").textContent=total;
+  if(elv("s-cierres")) elv("s-cierres").textContent=cierres;
+  if(elv("s-prosp"))   elv("s-prosp").textContent=prosp;
+  if(elv("s-visitas")) elv("s-visitas").textContent=vis;
+  var c=total>0?"#10b981":"#475569";
+  if(elv("pd"))elv("pd").style.background=c;
+  if(elv("pt")){elv("pt").style.color=c;elv("pt").textContent=total>0?total+" registros":"Sin datos";}
+  if(elv("pill")){elv("pill").style.borderColor=c+"44";elv("pill").style.background=total>0?"rgba(16,185,129,.1)":"rgba(71,85,105,.12)";}
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────
+function render(){
+  var w=elv("wrap");if(!w)return;
+  var data=FILTERED.length||document.getElementById("flt-badge").style.display==="inline"?FILTERED:ALL;
+  // If no filters active, use ALL; if filters active use FILTERED
+  var badge=elv("flt-badge");
+  var hasFilter=badge&&badge.style.display==="inline";
+  data = hasFilter ? FILTERED : ALL;
+
+  if(TAB==="resumen")    w.innerHTML=renderResumen(data);
+  else if(TAB==="hoy")   w.innerHTML=renderHoy(data);
+  else if(TAB==="vendedor") w.innerHTML=renderVendedor(data);
+  else if(TAB==="comercios") w.innerHTML=renderComercios(data);
+  else w.innerHTML=renderTodo(data);
+}
+
+function setTab(tab,el){
+  TAB=tab;
+  document.querySelectorAll(".tab").forEach(function(t){t.className="tab";});
+  el.className="tab on";
+  render();
+}
+
+// ── RESUMEN ───────────────────────────────────────────────────────────
+function renderResumen(data){
+  var TYPES=["visita","prospecto","cierre","seguimiento","propuesta","otro"];
+  var TYPE_FULL={visita:"Visitas",prospecto:"Prospectos",cierre:"Cierres",seguimiento:"Seguimientos",propuesta:"Propuestas",otro:"Otros"};
+
+  var total=data.length;
+  var byType={};TYPES.forEach(function(t){byType[t]=0;});
+  data.forEach(function(v){if(byType[v.type]!==undefined)byType[v.type]++;else byType[v.type]=(byType[v.type]||0)+1;});
+
+  var h='<div class="res-section">';
+
+  // KPI cards top row
+  h+='<div class="kpi-grid">';
+  h+='<div class="kpi-card"><div class="kpi-val" style="color:var(--teal)">'+total+'</div><div class="kpi-lbl">Total registros</div></div>';
+  h+='<div class="kpi-card"><div class="kpi-val" style="color:var(--gr)">'+(byType.cierre||0)+'</div><div class="kpi-lbl">Cierres</div></div>';
+  h+='<div class="kpi-card"><div class="kpi-val" style="color:var(--am)">'+(byType.prospecto||0)+'</div><div class="kpi-lbl">Prospectos</div></div>';
+  h+="</div>";
+
+  // Type breakdown with bars
+  h+='<div class="res-title">Desglose por tipo</div>';
+  var maxT=Math.max.apply(null,TYPES.map(function(t){return byType[t]||0;}));
+  TYPES.forEach(function(t){
+    var n=byType[t]||0;if(!n)return;
+    var pct=maxT>0?Math.round((n/maxT)*100):0;
+    var pctTotal=total>0?Math.round((n/total)*100):0;
+    h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">';
+    h+='<span class="type-pill tp-'+t+'" style="width:90px;text-align:center">'+TYPE_FULL[t]+"</span>";
+    h+='<div class="bar-wrap"><div class="bar-fill" style="width:'+pct+'%;background:'+typeColor(t)+'"></div></div>';
+    h+='<span style="font-size:13px;font-weight:700;color:var(--tx);width:28px;text-align:right">'+n+"</span>";
+    h+='<span style="font-size:11px;color:var(--mu);width:34px">'+pctTotal+"%</span>";
+    h+="</div>";
+  });
+  h+="</div>";
+
+  // By vendor
+  h+='<div class="res-section"><div class="res-title">Por vendedor</div>';
+  VS.forEach(function(v){
+    var vdata=data.filter(function(r){return r.vendor===v.name;});
+    if(!vdata.length)return;
+    var vByType={};TYPES.forEach(function(t){vByType[t]=0;});
+    vdata.forEach(function(r){vByType[r.type]=(vByType[r.type]||0)+1;});
+    h+='<div class="vendor-row">';
+    h+='<div class="av" style="width:38px;height:38px;font-size:13px;background:'+v.color+'">'+ini(v.name)+"</div>";
+    h+='<div style="flex:1">';
+    h+='<div style="font-size:13px;font-weight:700;margin-bottom:6px">'+v.name+' <span style="font-size:11px;color:var(--mu);font-weight:400">('+vdata.length+" registros)</span></div>";
+    h+='<div class="type-bar">';
+    TYPES.forEach(function(t){
+      if(!(vByType[t]))return;
+      h+='<span class="type-pill tp-'+t+'">'+TYPE_FULL[t]+": "+vByType[t]+"</span>";
+    });
+    h+="</div></div></div>";
+  });
+  h+="</div>";
+
+  // By date summary (last 14 days)
+  var byDate={};
+  data.forEach(function(v){
+    var d=v.date||(v.ts?v.ts.split("T")[0]:"");
+    if(!d)return;
+    if(!byDate[d]){byDate[d]={total:0,cierres:0,prospectos:0};}
+    byDate[d].total++;
+    if(v.type==="cierre")byDate[d].cierres++;
+    if(v.type==="prospecto")byDate[d].prospectos++;
+  });
+  var dates=Object.keys(byDate).sort().reverse().slice(0,14);
+  if(dates.length){
+    h+='<div class="res-section"><div class="res-title">Actividad por fecha</div>';
+    h+='<div style="background:var(--bg3);border:1px solid var(--b);border-radius:12px;overflow:hidden">';
+    h+='<div style="display:grid;grid-template-columns:110px 1fr 60px 70px 80px;padding:8px 14px;background:var(--b);font-size:10px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.05em">';
+    h+='<div>Fecha</div><div></div><div style="text-align:center">Total</div><div style="text-align:center">Cierres</div><div style="text-align:center">Prospectos</div></div>';
+    var maxDay=Math.max.apply(null,dates.map(function(d){return byDate[d].total;}));
+    dates.forEach(function(d,idx){
+      var dd=byDate[d];
+      var pct=maxDay>0?Math.round((dd.total/maxDay)*100):0;
+      h+='<div style="display:grid;grid-template-columns:110px 1fr 60px 70px 80px;padding:8px 14px;align-items:center;border-top:1px solid var(--b);background:'+(idx%2===0?"var(--bg3)":"rgba(255,255,255,.01)")+';">';
+      h+='<div style="font-size:12px;font-weight:600">'+fdateShort(d)+"</div>";
+      h+='<div class="bar-wrap" style="height:6px"><div class="bar-fill" style="width:'+pct+'%;background:var(--teal)"></div></div>';
+      h+='<div style="text-align:center;font-size:13px;font-weight:700">'+dd.total+"</div>";
+      h+='<div style="text-align:center;font-size:13px;font-weight:700;color:'+(dd.cierres>0?"var(--gr)":"var(--b2)")+'">'+dd.cierres+"</div>";
+      h+='<div style="text-align:center;font-size:13px;font-weight:700;color:'+(dd.prospectos>0?"var(--am)":"var(--b2)")+'">'+dd.prospectos+"</div>";
+      h+="</div>";
+    });
+    h+="</div></div>";
+  }
+
+  return h;
+}
+
+function typeColor(t){return{visita:"#0d9488",prospecto:"#f59e0b",cierre:"#10b981",seguimiento:"#818cf8",propuesta:"#60a5fa",otro:"#475569"}[t]||"#475569";}
+
+// ── HOY ───────────────────────────────────────────────────────────────
+function renderHoy(data){
+  var t=today();
+  var tv=data.filter(function(v){return v.date===t;}).sort(function(a,b){return b.ts.localeCompare(a.ts);});
+  var h='<div class="sec-lbl">Hoy - '+fdateShort(t)+' ('+tv.length+" registros)</div>";
+  h+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px">';
+  VS.forEach(function(v){
+    var vv=tv.filter(function(r){return r.vendor===v.name;});
+    var vc=vv.filter(function(r){return r.type==="cierre";}).length;
+    h+='<div style="background:var(--bg3);border:1px solid var(--b);border-radius:12px;padding:10px;text-align:center">';
+    h+='<div class="av" style="width:28px;height:28px;font-size:10px;background:'+v.color+';margin:0 auto 6px">'+ini(v.name)+"</div>";
+    h+='<div style="font-size:20px;font-weight:800;color:'+(vv.length>0?"#f1f5f9":"#334155")+'">'+vv.length+"</div>";
+    h+='<div style="font-size:9px;color:#64748b">visitas</div>';
+    if(vc>0)h+='<div style="font-size:10px;color:#10b981;font-weight:700;margin-top:2px">'+vc+" cierre"+(vc>1?"s":"")+"</div>";
+    h+="</div>";
+  });
+  h+="</div>";
+  if(!tv.length){h+='<div class="empty"><div style="font-size:36px;margin-bottom:10px">&#128205;</div><div style="font-size:14px;font-weight:600;color:#cbd5e1">Sin actividad hoy</div></div>';return h;}
+  tv.forEach(function(v){h+=visitRow(v);});
+  return h;
+}
+
+// ── POR VENDEDOR ──────────────────────────────────────────────────────
+function renderVendedor(data){
+  var t=today();
+  var tv=data.filter(function(v){return v.date===t;}).sort(function(a,b){return b.ts.localeCompare(a.ts);});
+  var h='<div class="sec-lbl">Por vendedor - hoy</div>';
+  VS.forEach(function(v){
+    var vv=tv.filter(function(r){return r.vendor===v.name;});
+    var vc=vv.filter(function(r){return r.type==="cierre";}).length;
+    var vp=vv.filter(function(r){return r.type==="prospecto";}).length;
+    h+='<div style="background:var(--bg3);border:1px solid var(--b);border-radius:14px;overflow:hidden;margin-bottom:12px">';
+    h+='<div style="padding:12px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--b)">';
+    h+='<div class="av" style="width:36px;height:36px;font-size:13px;background:'+v.color+'">'+ini(v.name)+"</div>";
+    h+='<div style="flex:1;font-size:14px;font-weight:700">'+v.name+"</div>";
+    h+='<div style="display:flex;gap:14px">';
+    h+='<div style="text-align:center"><div style="font-size:18px;font-weight:800;color:'+(vv.length>0?"#f1f5f9":"#334155")+'">'+vv.length+'</div><div style="font-size:9px;color:#64748b">Total</div></div>';
+    h+='<div style="text-align:center"><div style="font-size:18px;font-weight:800;color:'+(vc>0?"#10b981":"#334155")+'">'+vc+'</div><div style="font-size:9px;color:#64748b">Cierres</div></div>';
+    h+='<div style="text-align:center"><div style="font-size:18px;font-weight:800;color:'+(vp>0?"#f59e0b":"#334155")+'">'+vp+'</div><div style="font-size:9px;color:#64748b">Prospectos</div></div>';
+    h+="</div></div>";
+    if(vv.length){h+='<div style="padding:8px 12px 10px">';vv.forEach(function(r){h+=visitRow(r);});h+="</div>";}
+    else h+='<div style="padding:12px 16px;font-size:12px;color:#334155">Sin visitas hoy</div>';
+    h+="</div>";
+  });
+  return h;
+}
+
+// ── COMERCIOS ─────────────────────────────────────────────────────────
+function renderComercios(data){
   var map={};
-  ALL.forEach(function(v){
+  data.forEach(function(v){
     if(!v.commerce)return;
     var key=v.commerce.toLowerCase().trim();
     if(!map[key]){map[key]={name:v.commerce,contact:"",phone:"",location:"",visits:[],lastTs:"",lastDate:"",lastVendor:""};}
     if(v.ts>=(map[key].lastTs||"")){
       map[key].lastTs=v.ts;map[key].lastDate=v.date;map[key].lastVendor=v.vendor;
-      if(v.contact)map[key].contact=v.contact;
-      if(v.phone)map[key].phone=v.phone;
-      if(v.location)map[key].location=v.location;
+      if(v.contact)map[key].contact=v.contact;if(v.phone)map[key].phone=v.phone;if(v.location)map[key].location=v.location;
     }
     map[key].visits.push(v);
   });
-  var arr=[];for(var k in map)arr.push(map[k]);
-  arr.sort(function(a,b){return(b.lastTs||"").localeCompare(a.lastTs||"");});
-  return arr;
+  var dir=[];for(var k in map)dir.push(map[k]);
+  dir.sort(function(a,b){return(b.lastTs||"").localeCompare(a.lastTs||"");});
+  var h='<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div class="sec-lbl" style="margin-bottom:0">Directorio de comercios ('+dir.length+")</div></div>";
+  if(!dir.length){h+='<div class="empty"><div style="font-size:14px;color:#cbd5e1;font-weight:600">Sin comercios</div></div>';return h;}
+  h+='<input type="text" id="com-search" placeholder="Buscar comercio..." oninput="filterComPanel(this.value)" style="width:100%;background:var(--bg3);border:1px solid var(--b2);border-radius:10px;color:var(--tx);font-size:14px;font-family:var(--fn);padding:10px 14px;margin-bottom:12px">';
+  h+='<div id="com-list">';
+  dir.forEach(function(c){h+=comCard(c);});
+  h+="</div>";
+  return h;
+}
+function filterComPanel(q){
+  // Re-render with search
+  var w=elv("wrap");if(!w)return;
+  var badge=elv("flt-badge");var hasFilter=badge&&badge.style.display==="inline";
+  var data=hasFilter?FILTERED:ALL;
+  var map={};
+  data.forEach(function(v){
+    if(!v.commerce)return;
+    var key=v.commerce.toLowerCase().trim();
+    if(!map[key]){map[key]={name:v.commerce,contact:"",phone:"",location:"",visits:[],lastTs:"",lastDate:"",lastVendor:""};}
+    if(v.ts>=(map[key].lastTs||"")){map[key].lastTs=v.ts;map[key].lastDate=v.date;map[key].lastVendor=v.vendor;if(v.contact)map[key].contact=v.contact;if(v.phone)map[key].phone=v.phone;if(v.location)map[key].location=v.location;}
+    map[key].visits.push(v);
+  });
+  var dir=[];for(var k in map)dir.push(map[k]);
+  if(q)dir=dir.filter(function(c){return c.name.toLowerCase().indexOf(q.toLowerCase())>=0;});
+  dir.sort(function(a,b){return(b.lastTs||"").localeCompare(a.lastTs||"");});
+  var cl=elv("com-list");if(!cl)return;
+  var h="";dir.forEach(function(c){h+=comCard(c);});
+  cl.innerHTML=h||'<div style="font-size:13px;color:#475569;padding:20px 0">Sin resultados</div>';
+}
+function comCard(c){
+  var cnt=c.visits.length;
+  var types={};c.visits.forEach(function(v){types[v.type]=(types[v.type]||0)+1;});
+  var typeNames={visita:"Visitas",prospecto:"Prospectos",cierre:"Cierres",seguimiento:"Seguimientos",propuesta:"Propuestas",otro:"Otros"};
+  var h='<div class="com-card"><div class="com-name">'+esc(c.name)+'<span style="font-size:11px;background:var(--b);padding:2px 8px;border-radius:6px;color:var(--tx2);font-weight:600;margin-left:8px">'+cnt+" visita"+(cnt>1?"s":"")+"</span></div>";
+  h+='<div class="com-meta">';
+  if(c.contact)h+='<span>&#128100; '+esc(c.contact)+"</span>";
+  if(c.phone)h+='<span>&#128222; <a href="tel:'+esc(c.phone)+'" style="color:var(--teal);text-decoration:none">'+esc(c.phone)+"</a></span>";
+  h+="</div>";
+  var pills="";for(var t in types)pills+='<span style="font-size:10px;background:var(--b);padding:2px 7px;border-radius:5px;color:var(--tx2);margin-right:4px">'+typeNames[t]+": "+types[t]+"</span>";
+  if(pills)h+='<div style="margin-bottom:6px">'+pills+"</div>";
+  if(c.location)h+='<a href="'+esc(c.location)+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--gr);text-decoration:none;background:rgba(16,185,129,.08);padding:3px 8px;border-radius:6px;margin-bottom:4px">&#128205; Ver GPS</a>';
+  h+='<div style="font-size:11px;color:var(--mu)">Ultimo: '+fdateShort(c.lastDate)+" · "+esc(c.lastVendor)+"</div></div>";
+  return h;
 }
 
-function todayList(){return ALL.filter(function(v){return v.date===today();});}
-
-function updateBar(){
-  var tv=todayList();
-  var vis=tv.filter(function(v){return v.type!=="cierre";}).length;
-  var cier=tv.filter(function(v){return v.type==="cierre";}).length;
-  var pros=tv.filter(function(v){return v.type==="prospecto";}).length;
-  el("sv").textContent=vis;el("scl").textContent=cier;el("spr").textContent=pros;el("stot").textContent=tv.length;
-  var c=tv.length>0?"#10b981":"#475569";
-  el("pd").style.background=c;el("pt").style.color=c;
-  el("pt").textContent=tv.length>0?tv.length+" registros hoy":"Sin actividad hoy";
-  el("pill").style.borderColor=c+"44";
-  el("pill").style.background=tv.length>0?"rgba(16,185,129,.1)":"rgba(71,85,105,.12)";
+// ── TODOS ─────────────────────────────────────────────────────────────
+function renderTodo(data){
+  var sorted=data.slice().sort(function(a,b){return b.ts.localeCompare(a.ts);});
+  var h='<div class="sec-lbl">Todos los registros ('+sorted.length+")</div>";
+  if(!sorted.length){h+='<div class="empty"><div style="font-size:14px;color:#cbd5e1;font-weight:600">Sin registros</div></div>';return h;}
+  sorted.forEach(function(v){h+=visitRow(v);});
+  return h;
 }
 
 function visitRow(v){
   var h='<div class="vrow"><div class="vr-top">';
-  h+='<span class="vbadge '+typeCls(v.type)+'">'+typeLabel(v.type)+"</span>";
+  h+='<span class="vbadge '+(TYPE_CLS[v.type]||"vb-otro")+'">'+(TYPE_LABELS[v.type]||v.type)+"</span>";
   h+='<span class="vr-vendor">'+esc(v.vendor)+"</span>";
-  h+='<span class="vr-time">'+fdate(v.ts)+" "+ftime(v.ts)+"</span></div>";
+  h+='<span class="vr-time">'+fdateShort(v.date)+" "+ftime(v.ts)+"</span></div>";
   h+='<div class="vr-name">'+esc(v.commerce||"Sin nombre")+"</div>";
   var sub=[];if(v.contact)sub.push(v.contact);if(v.phone)sub.push(v.phone);
   if(sub.length)h+='<div class="vr-sub">'+esc(sub.join(" · "))+"</div>";
@@ -232,101 +526,13 @@ function visitRow(v){
   h+="</div>";return h;
 }
 
-function renderHoy(){
-  var tv=todayList().slice().sort(function(a,b){return b.ts.localeCompare(a.ts);});
-  var h='<div class="sec-lbl">Hoy ('+tv.length+" registros)</div>";
-  h+='<div class="mini-grid">';
-  for(var i=0;i<VS.length;i++){
-    var v=VS[i],vv=tv.filter(function(r){return r.vendor===v.name;});
-    var vc=vv.filter(function(r){return r.type==="cierre";}).length;
-    h+='<div class="mini-card"><div class="av" style="width:28px;height:28px;font-size:10px;background:'+v.color+';margin:0 auto 6px">'+ini(v.name)+"</div>";
-    h+='<div style="font-size:20px;font-weight:800;color:'+(vv.length>0?"#f1f5f9":"#334155")+'">'+vv.length+"</div>";
-    h+='<div style="font-size:9px;color:#64748b">visitas</div>';
-    if(vc>0)h+='<div style="font-size:10px;color:#10b981;font-weight:700;margin-top:2px">'+vc+" cierre"+(vc>1?"s":"")+"</div>";
-    h+="</div>";
-  }
-  h+="</div>";
-  if(!tv.length){h+='<div style="text-align:center;padding:30px;color:#475569"><div style="font-size:14px;font-weight:600;color:#cbd5e1">Sin actividad hoy</div></div>';return h;}
-  for(var i=0;i<tv.length;i++)h+=visitRow(tv[i]);
-  return h;
-}
+// ── INIT ──────────────────────────────────────────────────────────────
+elv("hdate").textContent=new Date().toLocaleDateString("es-DO",{weekday:"long",day:"numeric",month:"long"});
+// Default: show today in date filters
+var t=today();
+if(elv("f-from"))elv("f-from").value=t;
+if(elv("f-to"))  elv("f-to").value=t;
 
-function renderVendedor(){
-  var tv=todayList().slice().sort(function(a,b){return b.ts.localeCompare(a.ts);});
-  var h='<div class="sec-lbl">Por vendedor - hoy</div>';
-  for(var i=0;i<VS.length;i++){
-    var v=VS[i],vv=tv.filter(function(r){return r.vendor===v.name;});
-    var vc=vv.filter(function(r){return r.type==="cierre";}).length;
-    var vp=vv.filter(function(r){return r.type==="prospecto";}).length;
-    h+='<div class="vendor-block"><div class="vb-hdr">';
-    h+='<div class="av" style="width:36px;height:36px;font-size:13px;background:'+v.color+'">'+ini(v.name)+"</div>";
-    h+='<div style="flex:1;font-size:14px;font-weight:700">'+v.name+"</div>";
-    h+='<div style="display:flex;gap:14px">';
-    h+='<div style="text-align:center"><div style="font-size:18px;font-weight:800;color:'+(vv.length>0?"#f1f5f9":"#334155")+'">'+vv.length+'</div><div style="font-size:9px;color:#64748b">Total</div></div>';
-    h+='<div style="text-align:center"><div style="font-size:18px;font-weight:800;color:'+(vc>0?"#10b981":"#334155")+'">'+vc+'</div><div style="font-size:9px;color:#64748b">Cierres</div></div>';
-    h+='<div style="text-align:center"><div style="font-size:18px;font-weight:800;color:'+(vp>0?"#f59e0b":"#334155")+'">'+vp+'</div><div style="font-size:9px;color:#64748b">Prospectos</div></div>';
-    h+="</div></div>";
-    if(vv.length){h+='<div style="padding:8px 12px 10px">';for(var j=0;j<vv.length;j++)h+=visitRow(vv[j]);h+="</div>";}
-    else{h+='<div style="padding:12px 16px;font-size:12px;color:#334155">Sin visitas hoy</div>';}
-    h+="</div>";
-  }
-  return h;
-}
-
-function renderComercios(){
-  var dir=buildCommerceDir();
-  var h='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px"><div class="sec-lbl" style="margin-bottom:0">Directorio de comercios ('+dir.length+")</div></div>";
-  if(!dir.length){h+='<div style="text-align:center;padding:30px;color:#475569"><div style="font-size:14px;font-weight:600;color:#cbd5e1">Sin comercios aun</div></div>';return h;}
-  h+='<input type="text" id="com-search" placeholder="Buscar comercio..." oninput="filterCom(this.value)" style="width:100%;background:var(--b);border:1px solid var(--b2);border-radius:10px;color:var(--tx);font-size:14px;font-family:var(--fn);padding:10px 14px;margin-bottom:12px;box-sizing:border-box">';
-  h+='<div id="com-list">';
-  for(var i=0;i<dir.length;i++)h+=comCard(dir[i]);
-  h+="</div>";
-  return h;
-}
-function filterCom(q){
-  var dir=buildCommerceDir();
-  if(q)dir=dir.filter(function(c){return c.name.toLowerCase().indexOf(q.toLowerCase())>=0;});
-  var el2=document.getElementById("com-list");
-  if(!el2)return;
-  var h="";for(var i=0;i<dir.length;i++)h+=comCard(dir[i]);
-  el2.innerHTML=h||'<div style="font-size:13px;color:#475569;padding:20px 0">Sin resultados</div>';
-}
-function comCard(c){
-  var cnt=c.visits.length;
-  var types={};c.visits.forEach(function(v){types[v.type]=(types[v.type]||0)+1;});
-  var typeNames={visita:"Visitas",prospecto:"Prospectos",cierre:"Cierres",seguimiento:"Seguimientos",propuesta:"Propuestas",otro:"Otros"};
-  var h='<div class="com-card">';
-  h+='<div class="com-name">'+esc(c.name)+'<span class="com-visits" style="font-size:11px;background:var(--b);padding:2px 8px;border-radius:6px;color:var(--tx2);font-weight:600;margin-left:8px">'+cnt+" visita"+(cnt>1?"s":"")+"</span></div>";
-  h+='<div class="com-meta">';
-  if(c.contact)h+='<div class="com-tag">&#128100; '+esc(c.contact)+"</div>";
-  if(c.phone)h+='<div class="com-tag">&#128222; <a href="tel:'+esc(c.phone)+'" style="color:var(--teal);text-decoration:none">'+esc(c.phone)+"</a></div>";
-  h+="</div>";
-  var pills="";for(var t in types)pills+='<span style="font-size:10px;background:var(--b);padding:2px 7px;border-radius:5px;color:var(--tx2);margin-right:4px">'+typeNames[t]+": "+types[t]+"</span>";
-  if(pills)h+='<div style="margin-bottom:6px">'+pills+"</div>";
-  if(c.location)h+='<a href="'+esc(c.location)+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--gr);text-decoration:none;background:rgba(16,185,129,.08);padding:3px 8px;border-radius:6px;margin-bottom:6px">&#128205; Ver GPS</a>';
-  h+='<div style="font-size:11px;color:var(--mu)">Ultimo: '+fdate(c.lastDate)+" · "+esc(c.lastVendor)+"</div>";
-  h+="</div>";return h;
-}
-
-function renderTodo(){
-  var sorted=ALL.slice().sort(function(a,b){return b.ts.localeCompare(a.ts);});
-  var h='<div class="sec-lbl">Todos los registros ('+sorted.length+")</div>";
-  if(!sorted.length){h+='<div style="text-align:center;padding:30px;color:#475569"><div style="font-size:14px;color:#cbd5e1;font-weight:600">Sin registros</div></div>';return h;}
-  for(var i=0;i<sorted.length;i++)h+=visitRow(sorted[i]);
-  return h;
-}
-
-function render(){
-  updateBar();
-  var w=document.getElementById("wrap");if(!w)return;
-  if(TAB==="hoy")w.innerHTML=renderHoy();
-  else if(TAB==="vendedor")w.innerHTML=renderVendedor();
-  else if(TAB==="comercios")w.innerHTML=renderComercios();
-  else w.innerHTML=renderTodo();
-}
-function setTab(tab,el2){TAB=tab;document.querySelectorAll(".tab").forEach(function(t){t.className="tab";});el2.className="tab on";render();}
-
-document.getElementById("hdate").textContent=new Date().toLocaleDateString("es-DO",{weekday:"long",day:"numeric",month:"long"});
 loadData();
 setInterval(loadData,60000);
 </script>
